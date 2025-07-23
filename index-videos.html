@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة الفيديوهات</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: purple; /* 👑 خلفية بنفسجية */
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    /* 👑 غلاف الموقع */
+    .cover {
+      width: 100%;
+      height: 200px;
+      background-image: url('5alfia.png'); /* 👑 غلاف الصفحة */
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* 👑 صورة البروفايل الدائرية */
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid white;
+      position: absolute;
+      bottom: -50px;
+      right: 20px;
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* 👑 وصف الصفحة */
+    .description {
+      margin-top: 60px;
+      font-size: 16px;
+      padding: 0 20px;
+    }
+
+    /* 👑 تنسيق الفيديوهات */
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 20px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+
+    /* 👑 زر الرجوع */
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: black;
+      color: pink;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 192, 203, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 192, 203, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 192, 203, 0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="profile-pic"></div>
+  </div>
+
+  <div class="description">
+    <h3>📽️ معرض فيديوهات طائفة الظلام</h3>
+    <p>🔥 لحظات حاسمة... وصور متحركة تحكي عن التاريخ والهيبة.</p>
+  </div>
+
+  <div class="videos">
+    <!-- 👑 استبدل هذه الفيديوهات بمقاطعك أنت -->
+    <video controls src="video1.mp4"></video>
+    <video controls src="video2.mp4"></video>
+    <video controls src="video3.mp4"></video>
+    <video controls src="video4.mp4"></video>
+    <video controls src="video5.mp4"></video>
+    <video controls src="video6.mp4"></video>
+    <video controls src="video7.mp4"></video>
+    <video controls src="video8.mp4"></video>
+    <video controls src="video9.mp4"></video>
+  </div>
+
+  <!-- 👑 زر الرجوع -->
+  <a href="index.html">
+    <button class="back-button">🔙</button>
+  </a>
+
+  <!-- 👑 موسيقى تلقائية -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+</body>
+</html>
+
