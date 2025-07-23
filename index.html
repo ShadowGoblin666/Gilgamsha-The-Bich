@@ -10,27 +10,27 @@
       margin: 0;
       font-family: Arial, sans-serif;
       direction: rtl;
-      background-color: pink; /* 👑 خلفية وردية قابلة للتغيير */
+      background-color: pink; /* 👑 خلفية وردية */
       text-align: center;
     }
 
-    /* 👑 صورة غلاف مستطيلة كبيرة */
+    /* 👑 غلاف كبير مستطيل */
     .main-cover {
       width: 100%;
-      height: 220px; /* 👑 الطول الجديد لصورة الغلاف */
-      background-image: url('cover.jpg'); /* 👑 ضع اسم صورة الغلاف هنا */
+      height: 220px;
+      background-image: url('5alfia.png'); /* 👑 صورة الغلاف */
       background-size: cover;
       background-position: center;
     }
 
-    /* 👑 صورة البروفايل دائرية نابضة */
+    /* 👑 صورة بروفايل نابضة */
     .profile-pic {
       width: 130px;
       height: 130px;
       border-radius: 50%;
       border: 5px solid white;
       background-color: #4b0082;
-      background-image: url('profile.jpg'); /* 👑 اسم صورة البروفايل */
+      background-image: url('profile.png'); /* 👑 صورة البروفايل */
       background-size: cover;
       background-position: center;
       position: absolute;
@@ -57,7 +57,6 @@
       color: #333;
     }
 
-    /* 👑 شبكة الصور */
     .gallery {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -67,7 +66,7 @@
     }
 
     .gallery img {
-      width: 130px; /* 👑 تكبير حجم الصور */
+      width: 130px;
       height: 130px;
       object-fit: cover;
       border-radius: 10px;
@@ -79,26 +78,50 @@
       transform: scale(1.1);
       cursor: pointer;
     }
+
+    /* 👑 زر صفحة الفيديوهات */
+    .video-button {
+      display: inline-block;
+      margin: 30px auto;
+      padding: 15px 30px;
+      background-color: #800080;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      animation: pulseViolet 2s infinite;
+      box-shadow: 0 0 10px #800080;
+    }
+
+    @keyframes pulseViolet {
+      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
+    }
+
+    .video-button:hover {
+      background-color: #a020f0;
+    }
+
   </style>
 </head>
 <body>
 
   <header>
-    <div class="main-cover"></div> <!-- 👑 غلاف مستطيل كبير -->
-    <div class="profile-pic"></div> <!-- 👑 صورة بروفايل -->
+    <div class="main-cover"></div> <!-- 👑 صورة الغلاف -->
+    <div class="profile-pic"></div> <!-- 👑 صورة البروفايل -->
   </header>
 
-  <div class="profile-desc">👑 أمير الظلال - لا يُرى إلا حين يشاء 👑</div> <!-- 👑 وصف فخم -->
+  <div class="profile-desc">👑 أمير الظلال - لا يُرى إلا حين يشاء 👑</div>
 
   <div class="gallery">
-    <!-- 👑 صور منشورات، غيّر src و alt حسب الحاجة -->
-    <img src="img1.jpg" alt="منشور 1">
-    <img src="img2.jpg" alt="منشور 2">
-    <img src="img3.jpg" alt="منشور 3">
-    <img src="img4.jpg" alt="منشور 4">
-    <img src="img5.jpg" alt="منشور 5">
-    <!-- أضف المزيد حسب الحاجة -->
+    <img src="بدون اسم130_20250502141304.png" alt="منشور 1">
+    <img src="بدون اسم150_20250616203704.png" alt="منشور 2">
+    <!-- 👑 يمكنك إضافة المزيد من الصور هنا -->
   </div>
+
+  <a href="videos.html" class="video-button">🎥 عرض الفيديوهات</a> <!-- 👑 زر الفيديوهات -->
 
 </body>
 </html>
