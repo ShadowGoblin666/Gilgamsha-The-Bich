@@ -2,31 +2,30 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DKSTx666 - بروفايل</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>طائفة الظلام</title>
   <style>
     body {
       margin: 0;
+      background-color: pink;
       font-family: Arial, sans-serif;
       direction: rtl;
-      background-color: pink; /* 👑 خلفية وردية */
       text-align: center;
     }
 
-    /* 👑 غلاف كبير مستطيل */
-    .main-cover {
-      width: 100%;
-      height: 220px;
+    header {
+      background-color: #4b0082;
+      height: 280px;
+      position: relative;
       background-image: url('5alfia.png'); /* 👑 صورة الغلاف */
       background-size: cover;
       background-position: center;
     }
 
-    /* 👑 صورة بروفايل نابضة */
     .profile-pic {
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 5px solid white;
       background-color: #4b0082;
@@ -34,74 +33,92 @@
       background-size: cover;
       background-position: center;
       position: absolute;
-      bottom: -65px;
+      bottom: -60px;
       right: 20px;
       animation: pulseRed 2s infinite;
       box-shadow: 0 0 10px red;
     }
 
     @keyframes pulseRed {
-      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-    }
-
-    header {
-      position: relative;
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(255, 0, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+      }
     }
 
     .profile-desc {
-      margin-top: 90px;
+      margin-top: 80px;
       font-size: 18px;
-      font-weight: bold;
       color: #333;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px #aaa;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
       padding: 20px;
-      justify-items: center;
     }
 
     .gallery img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
+      width: 100%;
       border-radius: 10px;
-      box-shadow: 0 0 5px #666;
-      transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.1);
+      transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
     }
 
-    /* 👑 زر صفحة الفيديوهات */
-    .video-button {
-      display: inline-block;
-      margin: 30px auto;
-      padding: 15px 30px;
-      background-color: #800080;
-      color: white;
-      font-size: 18px;
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #4b0082;
+    }
+
+    .descriptions {
+      background-color: #fff3f8;
+      padding: 20px;
+      border-top: 3px solid #4b0082;
       font-weight: bold;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* 👑 تكبير الصور */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      display: block;
+      max-width: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .modal:target {
+      display: block;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-size: 30px;
+      color: white;
       text-decoration: none;
-      border-radius: 12px;
-      animation: pulseViolet 2s infinite;
-      box-shadow: 0 0 10px #800080;
-    }
-
-    @keyframes pulseViolet {
-      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
-    }
-
-    .video-button:hover {
-      background-color: #a020f0;
     }
 
   </style>
@@ -109,19 +126,39 @@
 <body>
 
   <header>
-    <div class="main-cover"></div> <!-- 👑 صورة الغلاف -->
-    <div class="profile-pic"></div> <!-- 👑 صورة البروفايل -->
+    <a href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
+      <div class="profile-pic"></div>
+    </a>
   </header>
 
-  <div class="profile-desc">👑 أمير الظلال - لا يُرى إلا حين يشاء 👑</div>
+  <div class="profile-desc">👑 شادو - من يكتب الكلمات في العتمة 👑</div>
 
+  <!-- 👑 معرض المنشورات -->
   <div class="gallery">
-    <img src="بدون اسم130_20250502141304.png" alt="منشور 1">
-    <img src="بدون اسم150_20250616203704.png" alt="منشور 2">
-    <!-- 👑 يمكنك إضافة المزيد من الصور هنا -->
+    <a href="#img1"><img src="بدون اسم130_20250502141304.png" alt="منشور 1"></a>
+    <a href="#img2"><img src="بدون اسم150_20250616203704.png" alt="منشور 2"></a>
   </div>
 
-  <a href="videos.html" class="video-button">🎥 عرض الفيديوهات</a> <!-- 👑 زر الفيديوهات -->
+  <!-- 👑 تكبير الصور -->
+  <div id="img1" class="modal">
+    <a href="#" class="close">&times;</a>
+    <img class="modal-content" src="بدون اسم130_20250502141304.png">
+  </div>
+
+  <div id="img2" class="modal">
+    <a href="#" class="close">&times;</a>
+    <img class="modal-content" src="بدون اسم150_20250616203704.png">
+  </div>
+
+  <!-- 👑 وصف الموقع -->
+  <div class="descriptions">
+    <div>🔥 ركوب جلجامشة 🔥</div>
+    <div>🚫 تجاوزت جلجامشة الخطوط الحمراء، فصار دعسها عنوانها الأول والأخير.</div>
+    <div>🏴‍☠️ طائفة الظلام تتجاوز العتمة لتحكم في الأخير.</div>
+    <div>⚔️ نحن من يفعل قبل أن يتكلم، ويفعل قبل أن يتكلم.</div>
+    <div>👑 لطالما كان الظلام كلمات لا تُفهم إلا لمن قرأها، وشادو هو من يكتبها.</div>
+  </div>
 
 </body>
 </html>
+
