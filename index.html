@@ -13,21 +13,24 @@
       direction: rtl;
       text-align: center;
     }
+
+    /* 👑 غلاف مستطيل مثل فيسبوك */
     header {
-      background-color: #4b0082;
-      height: 280px;
-      position: relative;
-      background-image: url('5alfia.png'); /* 👑 اسم صورة الغلاف */
+      background-image: url('5alfia.png'); /* 👑 صورة الغلاف */
       background-size: cover;
       background-position: center;
+      height: 200px; /* 👑 ارتفاع أصغر للحصول على عرض عريض */
+      position: relative;
     }
+
+    /* 👑 صورة البروفايل */
     .profile-pic {
       width: 120px;
       height: 120px;
       border-radius: 50%;
       border: 5px solid white;
       background-color: #4b0082;
-      background-image: url('profile.png'); /* 👑 اسم صورة البروفايل */
+      background-image: url('profile.png'); /* 👑 صورة البروفايل */
       background-size: cover;
       background-position: center;
       position: absolute;
@@ -36,23 +39,27 @@
       animation: pulseRed 2s infinite;
       box-shadow: 0 0 10px red;
     }
+
     @keyframes pulseRed {
       0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
       70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
       100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
     }
+
     .profile-desc {
       margin-top: 80px;
       font-size: 18px;
       font-weight: bold;
       text-shadow: 1px 1px 3px #aaa;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       padding: 20px;
     }
+
     .gallery img {
       width: 100%;
       border-radius: 10px;
@@ -60,6 +67,7 @@
       box-shadow: 0 0 5px #666;
       transition: transform 0.2s ease;
     }
+
     .video-button {
       margin: 40px auto;
       padding: 10px 20px;
@@ -70,11 +78,14 @@
       border-radius: 10px;
       animation: pulseBtn 2s infinite;
     }
+
     @keyframes pulseBtn {
       0% { box-shadow: 0 0 0 0 rgba(128,0,128, 0.7); }
       70% { box-shadow: 0 0 0 20px rgba(128,0,128, 0); }
       100% { box-shadow: 0 0 0 0 rgba(128,0,128, 0); }
     }
+
+    /* 👑 نافذة تكبير الصورة */
     .popup {
       display: none;
       position: fixed;
@@ -85,6 +96,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .popup img {
       max-width: 90%;
       max-height: 90%;
@@ -94,27 +106,25 @@
   </style>
 </head>
 <body>
-  <!-- 👑 صورة الغلاف من cover.jpg -->
+
+  <!-- 👑 غلاف -->
   <header>
-    <!-- 👑 رابط عند الضغط على صورة البروفايل -->
-    <a href="https://example.com" target="_blank"> <!-- 👑 غيّر هذا الرابط -->
+    <!-- 👑 صورة البروفايل مع رابط -->
+    <a href="https://example.com" target="_blank"> <!-- 👑 غيّر هذا الرابط إذا أردت -->
       <div class="profile-pic"></div>
     </a>
   </header>
 
   <div class="profile-desc">👑 أمير الظلال - لا يُرى إلا حين يشاء 👑</div>
 
-  <!-- 👑 معرض صور 5x5 -->
+  <!-- 👑 معرض صور -->
   <div class="gallery">
-    <img src="بدون اسم130_20250502141304.png" alt="وصف الصورة 1" title="وصف الصورة 1">
-    <img src="بدون اسم150_20250616203704.png" alt="وصف الصورة 2" title="وصف الصورة 2">
-    <img src="img3.jpg" alt="وصف الصورة 3" title="وصف الصورة 3">
-    <img src="img4.jpg" alt="وصف الصورة 4" title="وصف الصورة 4">
-    <img src="img5.jpg" alt="وصف الصورة 5" title="وصف الصورة 5">
-    <!-- 👑 يمكنك إضافة المزيد حتى 25 صورة -->
+    <img src="بدون اسم150_20250616203704.png" alt="منشور 1" title="منشور 1">
+    <img src="بدون اسم130_20250502141304.png" alt="منشور 2" title="منشور 2">
+    <!-- 👑 يمكنك إضافة المزيد حتى 25 -->
   </div>
 
-  <!-- 👑 زر الفيديو -->
+  <!-- 👑 زر مشاهدة الفيديوهات -->
   <button class="video-button" onclick="location.href='videos.html'">🎥 مشاهدة الفيديوهات</button>
 
   <!-- 👑 نافذة تكبير الصور -->
