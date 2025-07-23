@@ -8,14 +8,13 @@
   <style>
     body {
       margin: 0;
-      background-color: pink; /* 👑 خلفية الموقع */
+      background-color: pink;
       font-family: Arial, sans-serif;
       direction: rtl;
       text-align: center;
       overflow-x: hidden;
     }
 
-    /* 👑 وصف علوي بتأثير نبض بطيء (يظهر ويختفي) */
     .top-description {
       background: linear-gradient(90deg, #4b0082, black, #4b0082);
       color: white;
@@ -31,7 +30,7 @@
     }
 
     header {
-      background-image: url('5alfia.png'); /* 👑 صورة الغلاف */
+      background-image: url('5alfia.png');
       background-size: cover;
       background-position: center;
       height: 250px;
@@ -43,7 +42,7 @@
       height: 110px;
       border-radius: 50%;
       border: 5px solid white;
-      background-image: url('profile.png'); /* 👑 صورة البروفايل */
+      background-image: url('profile.png');
       background-size: cover;
       background-position: center;
       position: absolute;
@@ -61,9 +60,9 @@
 
     .posts-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 👑 3 صور في كل صف */
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      padding: 80px 10px 30px;
+      padding: 80px 10px 80px;
     }
 
     .post-img {
@@ -80,7 +79,6 @@
       box-shadow: 0 0 15px #4b0082;
     }
 
-    /* 👑 تكبير الصورة عند النقر */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -110,11 +108,44 @@
       color: white;
       text-decoration: none;
     }
+
+    /* 👑 زر صفحة الفيديو */
+    .video-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: red;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      animation: glowPulse 2s infinite;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 20px 15px rgba(128, 0, 128, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(128, 0, 128, 0);
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- 👑 وصف متحرك نبضي -->
   <div class="top-description">
     ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير |
     طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |
@@ -122,14 +153,12 @@
   </div>
 
   <header>
-    <!-- 👑 صورة البروفايل مع رابط فيسبوك -->
     <a href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
       <div class="profile-pic"></div>
     </a>
   </header>
 
   <div class="posts-container">
-    <!-- 👑 منشورات -->
     <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 1"></a>
     <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img" alt="Post 2"></a>
     <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 3"></a>
@@ -141,16 +170,12 @@
     <a href="#img9"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 9"></a>
   </div>
 
-  <!-- 👑 نوافذ تكبير الصور -->
-  <div id="img1" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم130_20250502141304.png">
-  </div>
-  <div id="img2" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم150_20250616203704.png">
-  </div>
-  <!-- يمكنك نسخ وإضافة المزيد بنفس النمط إن أردت -->
+  <!-- 👑 نوافذ تكبير -->
+  <div id="img1" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم130_20250502141304.png"></div>
+  <div id="img2" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم150_20250616203704.png"></div>
+
+  <!-- 👑 زر صفحة الفيديو - غيّر اسم الملف هنا -->
+  <a href="video_page.html" class="video-button" title="صفحة الفيديوهات 🎬">🎬</a>
 
 </body>
 </html>
