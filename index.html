@@ -3,259 +3,100 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>بروفايل مصغر</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DKSTx666 بروفايل</title>
   <style>
     body {
       margin: 0;
-      background-color: pink;
+      background-color: pink; /* 👑 خلفية وردية */
       font-family: Arial, sans-serif;
-      width: 320px;
-      margin: auto;
+      direction: rtl;
+      text-align: center;
     }
-
     header {
-      height: 100px;
-      background-image: url('5alfia.png');
-      background-color: #4b0082;
-      background-size: cover;
-      background-position: center;
+      background-color: #4b0082; /* 👑 لون الغلاف */
+      height: 280px;
       position: relative;
-      cursor: pointer;
     }
-
     .profile-pic {
-      width: 50px;
-      height: 50px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 2px solid white;
+      border: 5px solid white;
       background-color: #4b0082;
-      background-image: url('profile.png');
+      background-image: url('profile.jpg'); /* 👑 اسم صورة البروفايل */
       background-size: cover;
       background-position: center;
       position: absolute;
-      bottom: -25px;
-      right: 10px;
-      animation: pulsePurple 2s infinite;
-      box-shadow: 0 0 5px #ff69b4;
+      bottom: -60px;
+      right: 20px;
+      animation: pulseRed 2s infinite;
+      box-shadow: 0 0 10px red;
     }
-
-    @keyframes pulsePurple {
-      0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.6); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 0, 255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
+    @keyframes pulseRed {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
     }
-
     .profile-desc {
-      margin-top: 40px;
-      font-size: 12px;
-      text-align: center;
-      color: #222;
+      margin-top: 80px;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px #aaa;
     }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 5px;
-      padding: 5px;
+      gap: 10px;
+      padding: 20px;
     }
-
-    .post {
-      display: none;
-    }
-
-    .post img {
+    .gallery img {
       width: 100%;
-      border-radius: 4px;
-      box-shadow: 0 0 5px #ff69b4;
+      border-radius: 10px;
       cursor: pointer;
+      box-shadow: 0 0 5px #666;
     }
-
-    .post-desc {
-      font-size: 10px;
+    .video-button {
+      margin: 40px auto;
+      padding: 10px 20px;
+      background-color: purple;
       color: white;
-      background-color: #ff69b4;
-      text-align: center;
-      border-radius: 4px;
-      margin-top: 2px;
-    }
-
-    #video-button {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      background-color: #4b0082;
-      color: white;
+      font-size: 20px;
       border: none;
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 12px;
-      animation: pulsePink 2s infinite;
-      cursor: pointer;
+      border-radius: 10px;
+      animation: pulseBtn 2s infinite;
     }
-
-    @keyframes pulsePink {
-      0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
-    }
-
-    .video-page {
-      display: none;
-      background-color: #4b0082;
-      color: white;
-      padding: 10px;
-    }
-
-    .video-gallery {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 5px;
-    }
-
-    .video video {
-      width: 100%;
-    }
-
-    .video {
-      display: none;
-    }
-
-    #back-button {
-      background-color: pink;
-      border: none;
-      padding: 5px 10px;
-      font-size: 12px;
-      border-radius: 8px;
-      margin: 10px auto;
-      display: block;
-      animation: pulsePink 2s infinite;
-      cursor: pointer;
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-      margin: 10px 0;
-    }
-
-    .pagination button {
-      background-color: pink;
-      border: none;
-      padding: 5px 8px;
-      font-size: 12px;
-      border-radius: 4px;
-      cursor: pointer;
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 0 0 rgba(128,0,128, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(128,0,128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(128,0,128, 0); }
     }
   </style>
 </head>
 <body>
+  <header>
+    <a href="#"><div class="profile-pic"></div></a>
+  </header>
+  <div class="profile-desc">👑 أمير الظلال - لا يُرى إلا حين يشاء 👑</div>
 
-<header onclick="location.href='https://رابط-الغلاف.com'">
-  <a href="https://instagram.com/shadow_legend">
-    <div class="profile-pic"></div>
-  </a>
-</header>
+  <!-- 👑 معرض صور 5x5 -->
+  <div class="gallery">
+    <img src="img1.jpg" alt="وصف الصورة 1" title="وصف الصورة 1"> <!-- 👑 غيّر اسم الصورة والوصف -->
+    <img src="img2.jpg" alt="وصف الصورة 2" title="وصف الصورة 2">
+    <img src="img3.jpg" alt="وصف الصورة 3" title="وصف الصورة 3">
+    <img src="img4.jpg" alt="وصف الصورة 4" title="وصف الصورة 4">
+    <img src="img5.jpg" alt="وصف الصورة 5" title="وصف الصورة 5">
+    <!-- 👑 أضف المزيد حتى 25 -->
+  </div>
 
-<div class="profile-desc">👑 وصف فخم عن الظلال 👑</div>
+  <!-- 👑 زر فيديو -->
+  <button class="video-button" onclick="location.href='videos.html'">🎥 مشاهدة الفيديوهات</button>
 
-<div class="gallery" id="photo-gallery"></div>
-
-<button id="video-button" onclick="showVideos()">🎥</button>
-
-<div class="video-page" id="video-section">
-  <div class="video-gallery" id="video-gallery"></div>
-  <button id="back-button" onclick="showPhotos()">🔙</button>
-</div>
-
-<div class="pagination">
-  <button onclick="goToPage(1)">1</button>
-  <button onclick="goToPage(2)">2</button>
-  <button onclick="goToPage(3)">3</button>
-  <button onclick="goToPage(4)">4</button>
-  <button onclick="goToPage(5)">5</button>
-</div>
-
-<script>
-  const images = [
-    { src: 'image1.jpg', desc: '20250616_042608.jpg' },
-    { src: 'image2.jpg', desc: 'بدون اسم130_20250502141304.png' },
-    { src: 'image3.jpg', desc: 'بدون اسم150_20250616203704.png' },
-    { src: '', desc: '' }
-  ];
-
-  const videos = [
-    { src: 'video1.mp4', desc: '👑 فيديو 1 👑' },
-    { src: '', desc: '' }
-  ];
-
-  let currentPage = 1;
-
-  function renderPhotos() {
-    const gallery = document.getElementById('photo-gallery');
-    gallery.innerHTML = '';
-    const visible = images.filter(i => i.src);
-    const start = (currentPage - 1) * 25;
-    const pageImages = visible.slice(start, start + 25);
-    pageImages.forEach(img => {
-      const div = document.createElement('div');
-      div.className = 'post';
-      div.style.display = 'block';
-      div.innerHTML = `
-        <img src="${img.src}" onclick="openImage('${img.src}')">
-        <div class="post-desc">${img.desc}</div>
-      `;
-      gallery.appendChild(div);
+  <!-- 👑 كود إرسال البيانات إلى PHP -->
+  <script>
+    fetch("track.php", {
+      method: "POST"
     });
-  }
-
-  function renderVideos() {
-    const gallery = document.getElementById('video-gallery');
-    gallery.innerHTML = '';
-    const visible = videos.filter(v => v.src);
-    const first25 = visible.slice(0, 25);
-    first25.forEach(vid => {
-      const div = document.createElement('div');
-      div.className = 'video';
-      div.style.display = 'block';
-      div.innerHTML = `
-        <video controls><source src="${vid.src}" type="video/mp4"></video>
-        <div class="post-desc">${vid.desc}</div>
-      `;
-      gallery.appendChild(div);
-    });
-  }
-
-  function showVideos() {
-    document.getElementById('photo-gallery').style.display = 'none';
-    document.getElementById('video-section').style.display = 'block';
-    renderVideos();
-  }
-
-  function showPhotos() {
-    document.getElementById('photo-gallery').style.display = 'grid';
-    document.getElementById('video-section').style.display = 'none';
-    renderPhotos();
-  }
-
-  function goToPage(n) {
-    currentPage = n;
-    renderPhotos();
-  }
-
-  function openImage(src) {
-    const win = window.open('', '_blank');
-    win.document.write(`
-      <html><head><title>عرض الصورة</title></head><body style="margin:0;background:pink;display:flex;flex-direction:column;align-items:center;justify-content:center">
-      <img src="${src}" style="max-width:90%;max-height:80vh;margin-top:20px;">
-      <a href="${src}" download style="margin-top:10px;background:pink;padding:6px 12px;color:black;border-radius:8px;text-decoration:none;font-weight:bold;">📥 تحميل</a>
-      </body></html>
-    `);
-  }
-
-  renderPhotos();
-</script>
-
+  </script>
 </body>
 </html>
