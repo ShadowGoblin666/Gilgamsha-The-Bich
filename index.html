@@ -15,22 +15,19 @@
       overflow-x: hidden;
     }
 
-    /* 👑 وصف متحرك في الأعلى */
+    /* 👑 وصف علوي بتأثير نبض بطيء (يظهر ويختفي) */
     .top-description {
       background: linear-gradient(90deg, #4b0082, black, #4b0082);
       color: white;
       padding: 15px;
       font-weight: bold;
       font-size: 16px;
-      animation: scrollText 20s linear infinite;
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
+      animation: fadeInOut 5s ease-in-out infinite;
     }
 
-    @keyframes scrollText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 1; }
     }
 
     header {
@@ -117,7 +114,7 @@
 </head>
 <body>
 
-  <!-- 👑 الوصف المتحرك -->
+  <!-- 👑 وصف متحرك نبضي -->
   <div class="top-description">
     ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير |
     طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |
@@ -125,14 +122,14 @@
   </div>
 
   <header>
-    <!-- 👑 رابط فيسبوك على صورة البروفايل -->
+    <!-- 👑 صورة البروفايل مع رابط فيسبوك -->
     <a href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
       <div class="profile-pic"></div>
     </a>
   </header>
 
   <div class="posts-container">
-    <!-- 👑 صور المنشورات -->
+    <!-- 👑 منشورات -->
     <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 1"></a>
     <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img" alt="Post 2"></a>
     <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 3"></a>
@@ -144,7 +141,7 @@
     <a href="#img9"><img src="بدون اسم130_20250502141304.png" class="post-img" alt="Post 9"></a>
   </div>
 
-  <!-- 👑 نافذة تكبير الصور -->
+  <!-- 👑 نوافذ تكبير الصور -->
   <div id="img1" class="lightbox">
     <a href="#" class="close-btn">×</a>
     <img src="بدون اسم130_20250502141304.png">
@@ -153,7 +150,7 @@
     <a href="#" class="close-btn">×</a>
     <img src="بدون اسم150_20250616203704.png">
   </div>
-  <!-- 👑 أضف المزيد من النوافذ بنفس النمط حسب الحاجة -->
+  <!-- يمكنك نسخ وإضافة المزيد بنفس النمط إن أردت -->
 
 </body>
 </html>
