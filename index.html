@@ -11,117 +11,49 @@
       background-color: pink;
       font-family: Arial, sans-serif;
       direction: rtl;
-      text-align: center;
-      overflow-x: hidden;
-      position: relative;
-      transform: scale(0.9); /* 👑 تصغير تلقائي */
-      transform-origin: top center;
     }
 
-    .top-description {
-      background: linear-gradient(90deg, #4b0082, black, #4b0082);
-      color: white;
-      padding: 15px;
-      font-weight: bold;
-      font-size: 16px;
-      animation: fadeInOut 5s ease-in-out infinite;
-    }
-
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0.1; }
-      50% { opacity: 1; }
-    }
-
-    header {
-      background-image: url('5alfia.png');
+    .header {
+      width: 100%;
+      height: 200px;
+      background-image: url('cover.jpg'); /* 👑 صورة الغلاف */
       background-size: cover;
       background-position: center;
-      height: 250px;
       position: relative;
     }
 
     .profile-pic {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
-      border: 5px solid white;
-      background-image: url('profile.png');
-      background-size: cover;
-      background-position: center;
+      background-color: purple;
+      border: 4px solid white;
       position: absolute;
-      bottom: -55px;
+      bottom: -50px;
       right: 20px;
       animation: pulse 2s infinite;
-      box-shadow: 0 0 10px purple;
+      object-fit: cover;
       cursor: pointer;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
-    }
-
-    .posts-container {
+    .content {
+      padding: 70px 10px 100px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
-      padding: 80px 10px 30px;
     }
 
     .post-img {
       width: 100%;
-      height: 120px;
+      height: 100px;
       object-fit: cover;
-      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 10px;
+      transition: transform 0.3s;
     }
 
     .post-img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #4b0082;
-    }
-
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      flex-direction: column;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .lightbox:target {
-      display: flex;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 30px;
-      color: white;
-      text-decoration: none;
-    }
-
-    .download-btn {
-      background-color: purple;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 16px;
+      transform: scale(1.05) rotate(1deg);
     }
 
     .video-fab, .blog-fab {
@@ -130,10 +62,11 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
+      color: white;
+      font-size: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
       animation: pulse 2s infinite;
       cursor: pointer;
       z-index: 1000;
@@ -141,9 +74,8 @@
 
     .video-fab {
       right: 20px;
-      background-color: black;
-      color: pink;
-      box-shadow: 0 0 15px pink;
+      background-color: purple;
+      box-shadow: 0 0 15px purple;
     }
 
     .blog-fab {
@@ -152,84 +84,117 @@
       color: black;
       box-shadow: 0 0 15px yellow;
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* نافذة التكبير */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .download-btn {
+      position: absolute;
+      bottom: 20px;
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-
-  <div class="top-description">
-    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير | 
-    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم | 
-    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
+  <div class="header">
+    <img src="profile.jpg" class="profile-pic" onclick="enlargeImage('profile.jpg')"> <!-- بدون link خارجي -->
   </div>
 
-  <header>
-    <!-- 👑 صورة بروفايل بدون رابط، تكبر كمنشور -->
-    <div class="profile-pic" onclick="openLightbox('profile.png', 'صورة البروفايل')"></div>
-  </header>
-
-  <div class="posts-container">
-    <!-- 👑 منشورات -->
-    <img src="بدون اسم130_20250502141304.png" class="post-img" onclick="openLightbox(this.src, 'منشور 1')">
-    <img src="بدون اسم150_20250616203704.png" class="post-img" onclick="openLightbox(this.src, 'منشور 2')">
-    <img src="بدون اسم130_20250502141304.png" class="post-img" onclick="openLightbox(this.src, 'منشور 3')">
+  <div class="content">
+    <!-- 👑 صور المنشورات -->
+    <img src="img1.jpg" class="post-img" onclick="enlargeImage('img1.jpg')">
+    <img src="img2.jpg" class="post-img" onclick="enlargeImage('img2.jpg')">
+    <img src="img3.jpg" class="post-img" onclick="enlargeImage('img3.jpg')">
+    <!-- أضف حتى 25 صورة -->
   </div>
 
-  <!-- 👑 Lightbox موحد -->
-  <div id="lightbox" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img id="zoomedImage">
-    <a id="downloadLink" class="download-btn" download>تحميل الصورة</a>
+  <!-- 👑 زر الفيديو -->
+  <div class="video-fab" onclick="reportClick('📹 صفحة الفيديوهات') || goToPage('video.html')" title="صفحة الفيديوهات">🎥</div>
+
+  <!-- 👑 زر المدونات -->
+  <div class="blog-fab" onclick="reportClick('📖 صفحة المدونات') || goToPage('index')" title="صفحة المدونات">📖</div>
+
+  <!-- 👑 نافذة التكبير -->
+  <div id="popup" class="popup" style="display:none;" onclick="closePopup()">
+    <img id="popup-img" src="">
+    <a id="download-link" class="download-btn" download target="_blank">تحميل الصورة</a>
   </div>
-
-  <!-- 👑 زر فيديو -->
-  <div class="video-fab" onclick="handleClick('📹 زر الفيديو', 'index.html')" title="صفحة الفيديوهات">🎥</div>
-
-  <!-- 👑 زر مدونات -->
-  <div class="blog-fab" onclick="handleClick('📖 زر المدونات', 'index')" title="صفحة المدونات">📖</div>
 
   <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
-    let report = "🛑 تقرير دخول جديد:\n\n";
 
-    // 👑 تقرير دخول IP + جهاز فقط عند الدخول
-    async function runReport() {
-      await fetch("https://ipinfo.io/json")
-        .then(res => res.json())
-        .then(data => {
-          report += `🌐 IP: ${data.ip}\n📍 ${data.city}, ${data.country}\n🌎 ${data.loc}\n🛰️ https://www.google.com/maps?q=${data.loc}\n`;
-        });
-      report += `🧠 المتصفح: ${navigator.userAgent}`;
-      sendToTelegram(report);
-    }
-
-    runReport();
-
-    // 👑 إرسال أي ضغط زر بدون IP
+    // 👑 إرسال رسالة إلى البوت
     function sendToTelegram(message) {
       fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: message })
       });
     }
 
-    // 👑 عند الضغط على زر معين
-    function handleClick(label, link) {
-      sendToTelegram(`🔘 الدخيل ضغط على: ${label}`);
-      window.location.href = link;
+    // 👑 إرسال IP والموقع عند الدخول فقط
+    window.addEventListener("load", () => {
+      fetch("https://ipinfo.io/json").then(res => res.json()).then(data => {
+        const msg = `🚨 دخول جديد للموقع:\n🌍 IP: ${data.ip}\n📍 الدولة: ${data.country} - المدينة: ${data.city}\n🕹️ المتصفح: ${navigator.userAgent}`;
+        sendToTelegram(msg);
+      });
+    });
+
+    // 👑 تكبير صورة عند النقر
+    function enlargeImage(src) {
+      document.getElementById("popup-img").src = src;
+      document.getElementById("download-link").href = src;
+      document.getElementById("popup").style.display = "flex";
+      sendToTelegram(`🖼️ تم النقر على صورة:\n${src}`);
     }
 
-    // 👑 تكبير الصور + تحميل + إرسال صورة للبوت
-    function openLightbox(src, label) {
-      document.getElementById('zoomedImage').src = src;
-      document.getElementById('downloadLink').href = src;
-      document.getElementById('downloadLink').onclick = () => {
-        sendToTelegram(`⬇️ الدخيل حمل الصورة: ${src}`);
-      };
-      sendToTelegram(`🖼️ الدخيل ضغط على صورة: ${label}\n${src}`);
-      location.hash = "lightbox";
+    // 👑 عند تحميل صورة
+    document.getElementById("download-link").addEventListener("click", function(e) {
+      e.stopPropagation(); // منع غلق النافذة
+      sendToTelegram(`📥 تم تحميل صورة:\n${this.href}`);
+    });
+
+    // 👑 إغلاق النافذة
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // 👑 الإبلاغ عند الضغط على زر
+    function reportClick(text) {
+      sendToTelegram(`👆 الدخيل ضغط على: ${text}`);
+    }
+
+    // 👑 الانتقال لصفحة
+    function goToPage(url) {
+      window.location.href = url;
     }
   </script>
 </body>
 </html>
+
