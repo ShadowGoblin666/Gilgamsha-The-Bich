@@ -1,91 +1,157 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طائفة الظلام - DKSTx666</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Cairo', sans-serif;
       background: radial-gradient(circle, pink 10%, #ffe6f0);
-      color: #333;
+      color: #2c003e;
       overflow-x: hidden;
     }
 
     header {
-      text-align: center;
-      padding: 10px;
-      background: url('glow-cover.jpg') center/cover no-repeat;
-      height: 180px;
+      background: url('cover.png') center center / cover no-repeat;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    .profile {
+    .profile-img {
+      position: absolute;
+      bottom: -60px;
       width: 120px;
       height: 120px;
       border-radius: 50%;
       border: 5px solid white;
-      margin: -60px auto 20px;
+      box-shadow: 0 0 20px purple;
       animation: pulse-purple 2s infinite;
     }
 
     @keyframes pulse-purple {
-      0% { box-shadow: 0 0 0 0 rgba(128,0,128, 0.5); }
-      70% { box-shadow: 0 0 0 15px rgba(128,0,128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128,0,128, 0); }
+      0% { box-shadow: 0 0 5px purple; }
+      50% { box-shadow: 0 0 20px purple; }
+      100% { box-shadow: 0 0 5px purple; }
     }
 
-    .gallery {
+    .posts-container {
+      margin-top: 100px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
-      padding: 20px;
+      padding: 10px;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
+    .post {
+      position: relative;
       cursor: pointer;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .post img {
+      width: 100%;
+      border-radius: 10px;
       transition: transform 0.3s ease;
     }
 
-    .gallery img:hover {
+    .post:hover img {
       transform: scale(1.05);
     }
 
-    .floating-btn {
+    .lightbox {
       position: fixed;
-      bottom: 15px;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      animation: zoomIn 2s;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-content img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+
+    .download-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: purple;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .video-btn, .blog-btn {
+      position: fixed;
+      bottom: 20px;
       width: 50px;
       height: 50px;
-      font-size: 22px;
       border-radius: 50%;
-      text-align: center;
-      line-height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
       color: white;
+      border: none;
       cursor: pointer;
-      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
     .video-btn {
-      right: 15px;
-      background: #ff0066;
+      right: 20px;
+      background: red;
+      animation: pulse-red 2s infinite;
+    }
+
+    @keyframes pulse-red {
+      0% { box-shadow: 0 0 5px red; }
+      50% { box-shadow: 0 0 20px red; }
+      100% { box-shadow: 0 0 5px red; }
     }
 
     .blog-btn {
-      left: 15px;
-      background: yellow;
-      color: black;
-      animation: pulse-yellow 1.5s infinite;
+      left: 20px;
+      background: gold;
+      animation: pulse-gold 2s infinite;
     }
 
-    @keyframes pulse-yellow {
-      0% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); }
-      70% { box-shadow: 0 0 0 12px rgba(255, 255, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0); }
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 5px gold; }
+      50% { box-shadow: 0 0 20px gold; }
+      100% { box-shadow: 0 0 5px gold; }
     }
 
-    .pagination {
+    .pages {
       position: fixed;
       bottom: 10px;
       left: 50%;
@@ -94,87 +160,90 @@
       gap: 10px;
     }
 
-    .pagination button {
+    .pages button {
       background: purple;
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 5px 12px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      animation: glow 2s infinite alternate;
       cursor: pointer;
-      box-shadow: 0 0 8px violet;
-      transition: transform 0.3s ease;
     }
 
-    .pagination button:hover {
-      transform: scale(1.2);
+    @keyframes glow {
+      from { box-shadow: 0 0 5px purple; }
+      to { box-shadow: 0 0 20px violet; }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img class="profile" src="profile.jpg" alt="صورة بروفايل">
+    <img class="profile-img" src="pfp.png" alt="بروفايل">
   </header>
 
-  <section class="gallery">
-    <img src="20250502_015045.png" onclick="notifyVisit('صورة 1')" />
-    <img src="20250502_015045.png" onclick="notifyVisit('صورة 2')" />
-    <img src="20250502_015045.png" onclick="notifyVisit('صورة 3')" />
-    <img src="20250502_015045.png" onclick="notifyVisit('صورة 4')" />
-    <img src="20250502_015045.png" onclick="notifyVisit('صورة 5')" />
-  </section>
-
-  <div class="floating-btn video-btn" onclick="openVideo()">
-    🎥
+  <div class="posts-container">
+    <a href="#img1" class="post"><img src="20250502_015045.png"></a>
+    <a href="#img2" class="post"><img src="20250502_015045.png"></a>
+    <a href="#img3" class="post"><img src="20250502_015045.png"></a>
+    <a href="#img4" class="post"><img src="20250502_015045.png"></a>
+    <a href="#img5" class="post"><img src="20250502_015045.png"></a>
   </div>
 
-  <div class="floating-btn blog-btn" onclick="openBlog()">
-    📖
+  <div id="img1" class="lightbox">
+    <div class="lightbox-content">
+      <img src="20250502_015045.png">
+      <a class="download-btn" href="20250502_015045.png" download>تحميل</a>
+    </div>
+  </div>
+  <div id="img2" class="lightbox">
+    <div class="lightbox-content">
+      <img src="20250502_015045.png">
+      <a class="download-btn" href="20250502_015045.png" download>تحميل</a>
+    </div>
+  </div>
+  <div id="img3" class="lightbox">
+    <div class="lightbox-content">
+      <img src="20250502_015045.png">
+      <a class="download-btn" href="20250502_015045.png" download>تحميل</a>
+    </div>
+  </div>
+  <div id="img4" class="lightbox">
+    <div class="lightbox-content">
+      <img src="20250502_015045.png">
+      <a class="download-btn" href="20250502_015045.png" download>تحميل</a>
+    </div>
+  </div>
+  <div id="img5" class="lightbox">
+    <div class="lightbox-content">
+      <img src="20250502_015045.png">
+      <a class="download-btn" href="20250502_015045.png" download>تحميل</a>
+    </div>
   </div>
 
-  <div class="pagination">
-    <button onclick="notifyVisit('الصفحة 1')">1</button>
-    <button onclick="notifyVisit('الصفحة 2')">2</button>
-    <button onclick="notifyVisit('الصفحة 3')">3</button>
-    <button onclick="notifyVisit('الصفحة 4')">4</button>
-    <button onclick="notifyVisit('الصفحة 5')">5</button>
+  <button class="video-btn" onclick="sendAction('فيديو') && location.href='video.html'">🎥</button>
+  <button class="blog-btn" onclick="sendAction('📖 مدونات') && location.href='index.html'">📖</button>
+
+  <div class="pages">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
   </div>
 
   <script>
-    const TOKEN = "👑"; // ضع توكن بوتك هنا
-    const CHAT_ID = "👑"; // معرف شاتك
-
-    function sendMessage(text) {
-      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text })
+    // إرسال معلومات عند دخول الموقع فقط
+    fetch("https://api.ipify.org?format=json")
+      .then(res => res.json())
+      .then(data => {
+        fetch(`https://api.telegram.org/bot7557167179:AAFg7vP3KoDdDL-TZ-NJkIgbNVE6NWPIWw8/sendMessage?chat_id=6913767526&text=📥 زائر جديد دخل الموقع %0AIP: ${data.ip}`);
       });
-    }
 
-    function notifyVisit(action) {
-      sendMessage(`📌 المضيف دخل إلى: ${action}`);
-    }
-
-    function openVideo() {
-      notifyVisit("زر الفيديو");
-      window.location.href = "video.html";
-    }
-
-    function openBlog() {
-      notifyVisit("زر المدونات 📖");
-      window.location.href = "index.html";
-    }
-
-    // إرسال بيانات الزائر أول مرة فقط
-    if (!localStorage.visited) {
-      localStorage.visited = "true";
-      fetch("https://ipinfo.io/json?token=ce4d6a5d55b4b9").then(res => res.json()).then(data => {
-        let message = `🧠 زائر جديد دخل الموقع\n🌐 IP: ${data.ip}\n📍 المدينة: ${data.city}\n📱 المنطقة: ${data.region}\n🛰️ البلد: ${data.country}\n🌍 الشبكة: ${data.org}`;
-        sendMessage(message);
-      });
+    // إرسال عند الضغط
+    function sendAction(action) {
+      fetch(`https://api.telegram.org/bot7557167179:AAFg7vP3KoDdDL-TZ-NJkIgbNVE6NWPIWw8/sendMessage?chat_id=6913767526&text=📌 مضيف دخل إلى: ${action}`);
+      return true;
     }
   </script>
-
 </body>
 </html>
