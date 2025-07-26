@@ -1,197 +1,191 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طائفة الظلام - DKSTx666</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css">
   <style>
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       background: radial-gradient(circle, pink 10%, #ffe6f0);
+      color: #333;
+      overflow-x: hidden;
     }
 
-    header {
-      position: relative;
-      height: 250px;
-      background: url('5alfia.png') center/cover no-repeat;
-      cursor: pointer;
-    }
-
-    .overlay-text {
-      position: absolute;
-      top: 20px;
-      width: 100%;
+    .profile-container {
       text-align: center;
-      font-size: 24px;
-      color: white;
-      animation: fadeInOut 8s infinite;
-      text-shadow: 2px 2px 4px #000;
+      margin-top: 20px;
     }
 
-    @keyframes fadeInOut {
-      0%, 100% { opacity: 0; }
-      20%, 80% { opacity: 1; }
-    }
-
-    .profile-pic {
-      position: absolute;
-      bottom: -55px;
-      right: 20px;
-      width: 110px;
-      height: 110px;
+    .profile-container img {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 0 15px purple;
-      animation: pulse 2s infinite;
+      border: 4px solid #a64ca6;
+      animation: pulse-purple 2s infinite;
       cursor: pointer;
       object-fit: cover;
-      background: #fff;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 5px purple; }
-      50% { box-shadow: 0 0 25px purple; }
-      100% { box-shadow: 0 0 5px purple; }
+    @keyframes pulse-purple {
+      0% {
+        box-shadow: 0 0 0 0 rgba(166, 76, 166, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 20px rgba(166, 76, 166, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(166, 76, 166, 0);
+      }
     }
 
-    main {
-      padding: 80px 20px 60px;
+    .header-description {
+      background-color: #a64ca6;
+      color: white;
+      padding: 15px;
+      margin: 20px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 1.2em;
+      animation: typing 5s steps(40, end), blink-caret 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: white; }
+    }
+
+    .cover-image {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      cursor: pointer;
+      border-bottom: 4px solid #a64ca6;
     }
 
     .gallery {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
+      padding: 20px;
     }
 
-    .gallery img {
+    .gallery a img {
       width: 100%;
       height: 120px;
       object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #888;
+    .gallery a:hover img {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #a64ca6;
     }
 
-    .floating-button {
+    .floating-btn {
       position: fixed;
       bottom: 20px;
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      text-align: center;
-      line-height: 50px;
-      font-size: 22px;
-      font-weight: bold;
-      color: black;
-      text-decoration: none;
-      z-index: 1000;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      animation: pulse-btn 2s infinite;
-    }
-
-    .floating-yellow {
-      background: yellow;
-      left: 20px;
-    }
-
-    .floating-red {
-      background: red;
-      right: 20px;
-    }
-
-    @keyframes pulse-btn {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    .pages {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      font-size: 24px;
       display: flex;
-      gap: 8px;
-    }
-
-    .pages a {
-      width: 35px;
-      height: 35px;
-      background: purple;
-      color: white;
-      text-align: center;
-      line-height: 35px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: transform 0.3s ease;
-    }
-
-    .pages a:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 10px purple;
-    }
-
-    #lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.8);
-      display: none;
       align-items: center;
       justify-content: center;
-      z-index: 1001;
+      color: white;
+      text-decoration: none;
     }
 
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 10px;
+    .video-btn {
+      background-color: red;
+      left: 20px;
+      animation: pulse-red 2s infinite;
     }
 
-    #download {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      color: black;
-      padding: 10px 20px;
+    @keyframes pulse-red {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+      }
+    }
+
+    .blog-btn {
+      background-color: gold;
+      right: 20px;
+      animation: pulse-gold 2s infinite;
+    }
+
+    @keyframes pulse-gold {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+      }
+    }
+
+    .page-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px;
+    }
+
+    .page-buttons a {
+      background-color: #a64ca6;
+      color: white;
+      padding: 10px 15px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
-  <header onclick="openLightbox('5alfia.png')">
-    <div class="overlay-text">👁️‍🗨️ مرحباً بك في طائفة الظلام - DKSTx666، حيث الظلام يُنير طريقك...</div>
-    <img src="20250502_015045.png" class="profile-pic" onclick="openLightbox('20250502_015045.png')">
-  </header>
+  <div class="profile-container">
+    <a href="profile.png" data-lightbox="profile">
+      <img src="profile.png" alt="Profile">
+    </a>
+  </div>
 
-  <main>
-    <div class="gallery">
-      <img src="20250502_015045.png" onclick="openLightbox(this.src)">
-      <img src="20250502_015045.png" onclick="openLightbox(this.src)">
-      <img src="20250502_015045.png" onclick="openLightbox(this.src)">
-      <img src="20250502_015045.png" onclick="openLightbox(this.src)">
-      <img src="20250502_015045.png" onclick="openLightbox(this.src)">
-    </div>
-  </main>
+  <div class="header-description">
+    مرحبًا بك في طائفة الظلام - DKSTx666 حيث تبدأ سيطرتنا!
+  </div>
 
-  <a href="index" class="floating-button floating-yellow" onclick="notify('📖 ضغط على زر الكتب')">📖</a>
-  <a href="index" class="floating-button floating-red" onclick="notify('🎥 ضغط على زر الفيديو')">🎥</a>
+  <a href="cover.jpg" data-lightbox="cover">
+    <img class="cover-image" src="cover.jpg" alt="صورة الغلاف">
+  </a>
 
-  <div class="pages">
+  <div class="gallery">
+    <a href="20250502_015045.png" data-lightbox="gallery"><img src="20250502_015045.png"></a>
+    <a href="20250502_015045.png" data-lightbox="gallery"><img src="20250502_015045.png"></a>
+    <a href="20250502_015045.png" data-lightbox="gallery"><img src="20250502_015045.png"></a>
+    <a href="20250502_015045.png" data-lightbox="gallery"><img src="20250502_015045.png"></a>
+    <a href="20250502_015045.png" data-lightbox="gallery"><img src="20250502_015045.png"></a>
+  </div>
+
+  <div class="page-buttons">
     <a href="index">1</a>
     <a href="index">2</a>
     <a href="index">3</a>
@@ -199,34 +193,10 @@
     <a href="index">5</a>
   </div>
 
-  <div id="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" src="">
-    <a id="download" href="#" download>📥 تحميل</a>
-  </div>
+  <a href="index" class="floating-btn video-btn">🎥</a>
+  <a href="index" class="floating-btn blog-btn">📖</a>
 
-  <script>
-    function openLightbox(src) {
-      const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      const dl = document.getElementById('download');
-      img.src = src;
-      dl.href = src;
-      lb.style.display = 'flex';
-    }
-
-    function notify(action) {
-      fetch("https://api.telegram.org/bot<YOUR_BOT_TOKEN>/sendMessage", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: "<YOUR_CHAT_ID>",
-          text: "👁️‍🗨️ زائر قام بـ: " + action
-        })
-      });
-    }
-
-    // إرسال إشعار دخول
-    notify('📥 دخل الموقع وتم تسجيل دخوله');
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
 </body>
+
 </html>
