@@ -1,166 +1,159 @@
 <!DOCTYPE html><html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحة الفيديوهات</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الظل يقطن هنا - فيديوهات</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
       background-color: #000;
       font-family: Arial, sans-serif;
       direction: rtl;
-      overflow: hidden; /* منع تحريك الصفحة */
-    }
-    .cover {
-      width: 100%;
-      height: 200px;
-      background: url('5alfia.png') center center / cover no-repeat;
-      border-bottom: 2px solid #a600ff;
-    }
-    .profile {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid #a600ff;
-      margin: -40px 20px 10px auto;
-      background: url('profile.png') center center / cover no-repeat;
-    }
-    .description {
-      text-align: center;
-      font-size: 18px;
-      margin: 10px;
-      font-weight: bold;
-      animation: pulse 3s infinite, colorShift 5s infinite alternate;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-    }
-    @keyframes colorShift {
-      0% { color: red; }
-      25% { color: yellow; }
-      50% { color: violet; }
-      75% { color: pink; }
-      100% { color: red; }
-    }
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 10px;
-    }
-    .video-wrapper {
-      position: relative;
-      padding-top: 100%;
-      background-color: #111;
-      border: 2px solid #a600ff;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .video-wrapper video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-    }
-    .video-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    .video-popup.active {
-      display: flex;
-    }
-    .video-popup video {
-      max-width: 90%;
-      max-height: 80%;
-    }
-    .download-btn {
-      position: absolute;
-      bottom: 20px;
-      background-color: pink;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 10px;
-    }
-    .back-link {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      background-color: violet;
-      border-radius: 50px;
-      padding: 10px 20px;
-      color: red;
-      font-weight: bold;
-      text-decoration: none;
-      animation: pulse 2s infinite alternate;
-    }
+      overflow-y: auto; /* 👑 يسمح بالتمرير لأعلى وأسفل */
+    }.cover {
+  width: 100%;
+  height: 200px;
+  background: url('5alfia.png') center/cover no-repeat;
+  border-bottom: 3px solid #ff00ff;
+}
+
+.profile {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #ff00ff;
+  position: absolute;
+  top: 160px;
+  right: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  animation: pulseText 3s infinite;
+}
+
+@keyframes pulseText {
+  0% { color: yellow; transform: scale(1); }
+  25% { color: white; }
+  50% { color: pink; transform: scale(1.02); }
+  75% { color: red; }
+  100% { color: yellow; transform: scale(1); }
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.video-thumb {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 👑 مربع تماماً */
+  background: url('photo4.png') center/cover no-repeat;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-player {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.video-player video {
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid #ff00ff;
+  border-radius: 10px;
+}
+
+.download-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: pink;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  background-color: purple;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: red;
+  font-size: 14px;
+  animation: pulseBack 2s infinite;
+  text-decoration: none;
+}
+
+@keyframes pulseBack {
+  0% { background-color: purple; }
+  50% { background-color: pink; }
+  100% { background-color: purple; }
+}
+
   </style>
 </head>
 <body>
   <div class="cover"></div>
-  <div class="profile"></div>
-  <div class="description">الظل يقطن هنا</div>
-  <div class="videos">
-    <div class="video-wrapper" onclick="showVideo('VivaCut_video_1751836959485_HD1.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video2.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video3.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video4.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video5.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video6.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video7.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video8.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div class="video-wrapper" onclick="showVideo('video9.mp4')">
-      <img src="photo2.png" style="position:absolute;width:100%;height:100%;object-fit:cover;">
-    </div>
-  </div>
-  <div class="video-popup" id="popup" onclick="hideVideo(event)">
-    <video id="popupVideo" controls autoplay></video>
-    <a id="download" class="download-btn" download>تحميل</a>
-  </div>
-  <a href="index.html" class="back-link">رجوع</a>  <script>
-    function showVideo(src) {
-      const popup = document.getElementById('popup');
-      const video = document.getElementById('popupVideo');
-      const download = document.getElementById('download');
-      video.src = src;
-      download.href = src;
-      popup.classList.add('active');
-    }
-    function hideVideo(e) {
-      if (e.target.id === 'popup' || e.target.id === 'popupVideo') return;
-      const popup = document.getElementById('popup');
-      const video = document.getElementById('popupVideo');
-      popup.classList.remove('active');
-      video.pause();
-      video.src = "";
-    }
+  <img src="profile.png" alt="صورة بروفايل" class="profile">
+  <div class="title">الظل يقطن هنا</div>  <div class="video-grid">
+    <div class="video-thumb" data-video="video1.mp4"></div>
+    <div class="video-thumb" data-video="video2.mp4"></div>
+    <div class="video-thumb" data-video="video3.mp4"></div>
+    <div class="video-thumb" data-video="video4.mp4"></div>
+    <div class="video-thumb" data-video="video5.mp4"></div>
+    <div class="video-thumb" data-video="video6.mp4"></div>
+    <div class="video-thumb" data-video="video7.mp4"></div>
+    <div class="video-thumb" data-video="video8.mp4"></div>
+    <div class="video-thumb" data-video="video9.mp4"></div>
+  </div>  <div class="video-player" id="playerOverlay">
+    <div id="videoContainer"></div>
+  </div><a href="index.html" class="back-btn">رجوع</a>
+
+  <script>
+    document.querySelectorAll('.video-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const videoSrc = thumb.getAttribute('data-video');
+        const playerOverlay = document.getElementById('playerOverlay');
+        const videoContainer = document.getElementById('videoContainer');
+        playerOverlay.style.display = 'flex';
+        videoContainer.innerHTML = `
+          <div>
+            <video src="${videoSrc}" controls autoplay></video>
+            <a class="download-btn" href="${videoSrc}" download>تحميل الفيديو</a>
+          </div>
+        `;
+      });
+    });
+
+    document.getElementById('playerOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'playerOverlay') {
+        e.currentTarget.style.display = 'none';
+        document.getElementById('videoContainer').innerHTML = '';
+      }
+    });
   </script></body>
-  </html>
+</html>
