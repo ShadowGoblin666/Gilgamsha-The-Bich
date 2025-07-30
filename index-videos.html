@@ -1,166 +1,164 @@
 <!DOCTYPE html><html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=480, initial-scale=1.0, maximum-scale=1.0">
   <title>الظل يقطن هنا - فيديوهات</title>
   <style>
     body {
       margin: 0;
       background-color: black;
-      color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
+      direction: rtl;
       overflow-x: hidden;
-    }.header {
-  width: 100%;
-  height: 200px;
-  background: url('5alfia.png') no-repeat center center;
-  background-size: cover;
-  border-bottom: 3px solid #800080;
-}
-
-.profile {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid #ff69b4;
-  position: absolute;
-  top: 160px;
-  right: 20px;
-  background: url('profile.png') no-repeat center center;
-  background-size: cover;
-}
-
-.description {
-  margin: 60px 20px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  animation: colorPulse 4s infinite alternate;
-  text-align: center;
-}
-
-@keyframes colorPulse {
-  0% { color: yellow; }
-  50% { color: white; }
-  100% { color: pink; }
-}
-
-.videos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
-}
-
-.video-container {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.video-thumb {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-}
-
-.video-player {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  background: black;
-  padding: 10px;
-  border: 2px solid #ff69b4;
-  border-radius: 10px;
-  display: none;
-}
-
-.video-player video {
-  max-width: 90vw;
-  max-height: 70vh;
-  display: block;
-}
-
-.download-btn {
-  background-color: pink;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.back-button {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: purple;
-  color: red;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 20px;
-  border-radius: 50px;
-  border: 2px solid pink;
-  cursor: pointer;
-  z-index: 1001;
-}
-
+    }
+    .header {
+      width: 100%;
+      height: 180px;
+      background: url('5alfia.png') center center/cover no-repeat;
+      border-bottom: 2px solid purple;
+    }
+    .profile {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid purple;
+      position: absolute;
+      top: 140px;
+      right: 20px;
+      background: url('profile') center center/cover no-repeat;
+    }
+    .description {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 18px;
+      color: yellow;
+      animation: pulseText 3s infinite alternate;
+    }
+    @keyframes pulseText {
+      0% { color: yellow; transform: scale(1); }
+      25% { color: white; transform: scale(1.03); }
+      50% { color: pink; transform: scale(1.05); }
+      75% { color: red; transform: scale(1.03); }
+      100% { color: yellow; transform: scale(1); }
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 20px;
+    }
+    .video-container {
+      position: relative;
+      cursor: pointer;
+    }
+    .video-container video,
+    .video-container img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 2px solid purple;
+      border-radius: 10px;
+    }
+    .back-button {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: purple;
+      color: red;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      animation: pulseBtn 2s infinite;
+    }
+    @keyframes pulseBtn {
+      0% { background-color: purple; }
+      50% { background-color: pink; }
+      100% { background-color: purple; }
+    }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    #overlay video {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    #downloadBtn {
+      margin-top: 15px;
+      background-color: pink;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="header"></div>
   <div class="profile"></div>
-  <div class="description">الظل يقطن هنا</div>  <div class="videos">
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD1.mp4')">
-      <img src="photo2.png" class="video-thumb">
+  <div class="description">الظل يقطن هنا</div>  <div class="video-grid">
+    <div class="video-container" onclick="openVideo('VivaCut_video_1751836959485_HD1.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD2.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD3.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg2.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD4.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg3.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD5.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg4.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD6.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg5.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD7.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg6.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD8.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg7.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD9.mp4')">
-      <img src="photo2.png" class="video-thumb">
+    <div class="video-container" onclick="openVideo('ffghgg8.mp4')">
+      <img src="photo2.png" alt="thumb">
     </div>
-  </div>  <div class="video-player" id="playerBox">
-    <video id="videoElement" controls></video>
-    <a id="downloadLink" class="download-btn" download>تحميل الفيديو</a>
-  </div>  <div class="back-button" onclick="history.back()">رجوع</div>  <script>
-    function showVideo(src) {
-      const player = document.getElementById("videoElement");
-      const playerBox = document.getElementById("playerBox");
-      const download = document.getElementById("downloadLink");
-      player.src = src;
-      download.href = src;
-      playerBox.style.display = 'block';
+  </div>  <div class="back-button">رجوع</div>  <div id="overlay" onclick="closeOverlay(event)">
+    <div style="text-align:center">
+      <video id="expandedVideo" controls autoplay></video>
+      <br>
+      <button id="downloadBtn">تحميل الفيديو</button>
+    </div>
+  </div>  <script>
+    function openVideo(src) {
+      const overlay = document.getElementById('overlay');
+      const video = document.getElementById('expandedVideo');
+      const downloadBtn = document.getElementById('downloadBtn');
+      video.src = src;
+      downloadBtn.onclick = function() {
+        const a = document.createElement('a');
+        a.href = src;
+        a.download = src;
+        a.click();
+      };
+      overlay.style.display = 'flex';
     }
 
-    document.addEventListener("click", function(e) {
-      const box = document.getElementById("playerBox");
-      if (e.target === box) {
-        box.style.display = 'none';
-        document.getElementById("videoElement").pause();
+    function closeOverlay(event) {
+      if (event.target.id === 'overlay') {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('expandedVideo').pause();
+        document.getElementById('expandedVideo').src = '';
       }
-    });
+    }
   </script></body>
   </html>
