@@ -2,48 +2,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الظل يقطن هنا</title>
+  <title>الظل يقطن هنا - فيديوهات</title>
   <style>
     body {
       margin: 0;
       background-color: black;
+      color: white;
+      font-family: 'Arial', sans-serif;
       overflow-x: hidden;
-      font-family: Arial, sans-serif;
-      zoom: 1;
-    }header {
+    }.header {
   width: 100%;
   height: 200px;
-  background-image: url('5alfia.png');
+  background: url('5alfia.png') no-repeat center center;
   background-size: cover;
-  background-position: center;
-  position: relative;
+  border-bottom: 3px solid #800080;
 }
 
 .profile {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 2px solid violet;
+  border: 3px solid #ff69b4;
   position: absolute;
-  bottom: -40px;
+  top: 160px;
   right: 20px;
-  background-image: url('profile.png');
+  background: url('profile.png') no-repeat center center;
   background-size: cover;
-  background-position: center;
 }
 
 .description {
+  margin: 60px 20px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  animation: colorPulse 4s infinite alternate;
   text-align: center;
-  margin-top: 60px;
-  font-size: 18px;
-  color: red;
-  animation: glowText 2s infinite alternate;
 }
 
-@keyframes glowText {
-  0% { color: yellow; text-shadow: 0 0 5px pink; }
-  50% { color: white; text-shadow: 0 0 10px red; }
-  100% { color: pink; text-shadow: 0 0 5px violet; }
+@keyframes colorPulse {
+  0% { color: yellow; }
+  50% { color: white; }
+  100% { color: pink; }
 }
 
 .videos {
@@ -56,123 +54,113 @@
 .video-container {
   position: relative;
   cursor: pointer;
-  background-color: #111;
-  border-radius: 10px;
   overflow: hidden;
+  border-radius: 10px;
 }
 
-.video-container img {
+.video-thumb {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
 }
 
-.video-popup {
+.video-player {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: black;
+  padding: 10px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  display: none;
 }
 
-.video-popup video {
-  width: 90%;
-  max-width: 600px;
-  border-radius: 10px;
+.video-player video {
+  max-width: 90vw;
+  max-height: 70vh;
+  display: block;
 }
 
 .download-btn {
-  margin-top: 10px;
   background-color: pink;
-  border: none;
   color: black;
+  border: none;
   padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.back-arrow {
+.back-button {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: violet;
+  background: purple;
   color: red;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  animation: pulseArrow 2s infinite;
-  z-index: 9999;
-}
-
-@keyframes pulseArrow {
-  0% { box-shadow: 0 0 5px pink; }
-  50% { box-shadow: 0 0 15px pink; }
-  100% { box-shadow: 0 0 5px pink; }
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 2px solid pink;
+  cursor: pointer;
+  z-index: 1001;
 }
 
   </style>
 </head>
 <body>
-  <header>
-    <div class="profile"></div>
-  </header>
+  <div class="header"></div>
+  <div class="profile"></div>
   <div class="description">الظل يقطن هنا</div>  <div class="videos">
-    <div class="video-container" onclick="showVideo('V1.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD1.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V2.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD2.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V3.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD3.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V4.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD4.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V5.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD5.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V6.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD6.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V7.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD7.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V8.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD8.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-    <div class="video-container" onclick="showVideo('V9.mp4')">
-      <img src="photo2.png">
+    <div class="video-container" onclick="showVideo('VivaCut_video_1751836959485_HD9.mp4')">
+      <img src="photo2.png" class="video-thumb">
     </div>
-  </div>  <div class="back-arrow" onclick="history.back()">⟵</div>  <div id="popup" class="video-popup" style="display:none">
-    <video id="popupVideo" controls></video>
+  </div>  <div class="video-player" id="playerBox">
+    <video id="videoElement" controls></video>
     <a id="downloadLink" class="download-btn" download>تحميل الفيديو</a>
-  </div>  <script>
+  </div>  <div class="back-button" onclick="history.back()">رجوع</div>  <script>
     function showVideo(src) {
-      const popup = document.getElementById('popup');
-      const video = document.getElementById('popupVideo');
-      const link = document.getElementById('downloadLink');
-      video.src = src;
-      link.href = src;
-      popup.style.display = 'flex';
+      const player = document.getElementById("videoElement");
+      const playerBox = document.getElementById("playerBox");
+      const download = document.getElementById("downloadLink");
+      player.src = src;
+      download.href = src;
+      playerBox.style.display = 'block';
     }
 
-    document.getElementById('popup').onclick = function(e) {
-      if (e.target === this) {
-        this.style.display = 'none';
-        const video = document.getElementById('popupVideo');
-        video.pause();
+    document.addEventListener("click", function(e) {
+      const box = document.getElementById("playerBox");
+      if (e.target === box) {
+        box.style.display = 'none';
+        document.getElementById("videoElement").pause();
       }
-    }
+    });
   </script></body>
-      </html>
+  </html>
