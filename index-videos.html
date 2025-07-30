@@ -7,57 +7,43 @@
     body {
       margin: 0;
       background-color: black;
-      font-family: Arial, sans-serif;
-      direction: rtl;
       overflow-x: hidden;
+      font-family: Arial, sans-serif;
       zoom: 1;
     }header {
   width: 100%;
   height: 200px;
-  background-color: #111;
+  background-image: url('5alfia.png');
   background-size: cover;
   background-position: center;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-header img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .profile {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 4px solid purple;
+  border: 2px solid violet;
   position: absolute;
-  bottom: -60px;
+  bottom: -40px;
   right: 20px;
-  z-index: 2;
+  background-image: url('profile.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .description {
-  margin-top: 80px;
   text-align: center;
+  margin-top: 60px;
   font-size: 18px;
-  animation: pulse 4s infinite alternate, colorChange 5s infinite alternate;
+  color: red;
+  animation: glowText 2s infinite alternate;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
-}
-
-@keyframes colorChange {
-  0% { color: red; }
-  33% { color: yellow; }
-  66% { color: violet; }
-  100% { color: pink; }
+@keyframes glowText {
+  0% { color: yellow; text-shadow: 0 0 5px pink; }
+  50% { color: white; text-shadow: 0 0 10px red; }
+  100% { color: pink; text-shadow: 0 0 5px violet; }
 }
 
 .videos {
@@ -67,63 +53,126 @@ header img {
   padding: 20px;
 }
 
-.video {
-  width: 100%;
+.video-container {
   position: relative;
   cursor: pointer;
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.video img {
+.video-container img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border: 2px solid purple;
-  border-radius: 12px;
-  transition: transform 0.3s;
+  display: block;
 }
 
-.video:hover img {
-  transform: scale(1.05);
-}
-
-.back-btn {
+.video-popup {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background-color: purple;
-  border: 3px solid red;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 20px;
-  box-shadow: 0 0 10px pink;
-  animation: blink 2s infinite alternate;
-  z-index: 10;
+  z-index: 999;
+  flex-direction: column;
 }
 
-@keyframes blink {
-  0% { box-shadow: 0 0 10px pink; }
-  100% { box-shadow: 0 0 20px red; }
+.video-popup video {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.download-btn {
+  margin-top: 10px;
+  background-color: pink;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.back-arrow {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: violet;
+  color: red;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  animation: pulseArrow 2s infinite;
+  z-index: 9999;
+}
+
+@keyframes pulseArrow {
+  0% { box-shadow: 0 0 5px pink; }
+  50% { box-shadow: 0 0 15px pink; }
+  100% { box-shadow: 0 0 5px pink; }
 }
 
   </style>
 </head>
-<body>  <header>
-    <img src="5alfia.png" alt="غلاف" />
-    <img src="profile.png" class="profile" alt="بروفايل" />
-  </header>  <div class="description">الظل يقطن هنا</div>  <div class="videos">
-    <div class="video"><img src="photo2.png" alt="فيديو 1"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 2"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 3"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 4"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 5"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 6"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 7"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 8"></div>
-    <div class="video"><img src="photo2.png" alt="فيديو 9"></div>
-  </div>  <div class="back-btn">←</div></body>
-</html>
+<body>
+  <header>
+    <div class="profile"></div>
+  </header>
+  <div class="description">الظل يقطن هنا</div>  <div class="videos">
+    <div class="video-container" onclick="showVideo('V1.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V2.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V3.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V4.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V5.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V6.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V7.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V8.mp4')">
+      <img src="photo2.png">
+    </div>
+    <div class="video-container" onclick="showVideo('V9.mp4')">
+      <img src="photo2.png">
+    </div>
+  </div>  <div class="back-arrow" onclick="history.back()">⟵</div>  <div id="popup" class="video-popup" style="display:none">
+    <video id="popupVideo" controls></video>
+    <a id="downloadLink" class="download-btn" download>تحميل الفيديو</a>
+  </div>  <script>
+    function showVideo(src) {
+      const popup = document.getElementById('popup');
+      const video = document.getElementById('popupVideo');
+      const link = document.getElementById('downloadLink');
+      video.src = src;
+      link.href = src;
+      popup.style.display = 'flex';
+    }
+
+    document.getElementById('popup').onclick = function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+        const video = document.getElementById('popupVideo');
+        video.pause();
+      }
+    }
+  </script></body>
+      </html>
