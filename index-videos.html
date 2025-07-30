@@ -6,167 +6,203 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       direction: rtl;
       overflow-x: hidden;
-      animation: backgroundFlow 20s linear infinite;
-      background: linear-gradient(-45deg, #2c003e, #4b005f, #2c003e, #3c0052);
+      background: linear-gradient(-45deg, #1a001a, #330033, #660066, #990099);
       background-size: 400% 400%;
-    }@keyframes backgroundFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+      animation: gradientMove 15s ease infinite;
+    }@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
-h1 {
-  color: white;
+.header {
   text-align: center;
-  margin-top: 20px;
+  padding: 30px 10px 10px;
 }
 
 .description {
-  color: #ffccff;
-  text-align: center;
-  font-size: 18px;
-  padding: 10px 20px;
-  line-height: 1.7;
-  animation: glow 4s infinite alternate;
+  font-size: 20px;
+  color: red;
+  font-weight: bold;
+  text-shadow: 0 0 5px yellow, 0 0 10px violet, 0 0 15px pink;
+  animation: pulseColor 3s infinite, shake 6s infinite;
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px #ff00ff; }
-  to { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+@keyframes pulseColor {
+  0%, 100% { text-shadow: 0 0 5px yellow, 0 0 10px violet, 0 0 15px pink; }
+  50% { text-shadow: 0 0 10px pink, 0 0 20px yellow, 0 0 30px violet; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(1px, -1px); }
+}
+
+.videos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+.video-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #222;
+  border: 3px solid violet;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-container.enlarged {
+  transform: scale(1.5);
+  z-index: 10;
+  box-shadow: 0 0 20px 5px violet;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px 5px violet; }
+  50% { box-shadow: 0 0 30px 10px deeppink; }
+}
+
+.download-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 15px;
+  background: purple;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.video-container.enlarged .download-button {
+  display: block;
 }
 
 .profile {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 4px solid #ff00ff;
   position: absolute;
+  bottom: -50px;
   right: 20px;
-  top: 20px;
-  animation: pulse 2s infinite;
+  border: 4px solid violet;
+  background: url('profile.png') center/cover no-repeat;
+  animation: pulseGlow 3s infinite;
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(255, 0, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0); }
-}
-
-.videos {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  padding: 20px;
-}
-
-.video-container {
-  position: relative;
-  border: 3px solid #800080;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s;
-}
-
-.video-container:hover {
-  cursor: pointer;
-}
-
-.video-container.enlarged {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-  z-index: 1000;
-  box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
-}
-
-.video-container video {
+.cover {
   width: 100%;
-  height: auto;
-  display: block;
-}
-
-.video-title {
-  text-align: center;
-  color: white;
-  background-color: #800080aa;
-  padding: 5px;
-}
-
-.download-btn {
-  display: none;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: #9b30ff;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  z-index: 1100;
-  animation: pulse 1.5s infinite;
+  height: 200px;
+  background: url('5alfia.png') center/cover no-repeat;
+  position: relative;
 }
 
 .back-button {
   position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background: #ff69b4;
-  color: white;
-  padding: 12px;
+  bottom: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background: violet;
   border-radius: 50%;
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  z-index: 2000;
+  box-shadow: 0 0 15px pink;
+  animation: pulseBack 2s infinite;
+}
+
+.back-button i {
+  color: red;
+  font-size: 30px;
+}
+
+@keyframes pulseBack {
+  0%, 100% { box-shadow: 0 0 15px pink; }
+  50% { box-shadow: 0 0 25px hotpink; }
 }
 
   </style>
 </head>
 <body>
-  <img src="profile.png" class="profile" alt="بروفايل" />
-  <h1>صفحة الفيديوهات - طائفة الظلام</h1>
-  <div class="description">
-    ركوب جلجامشة | تجاوزت جلجامشة خطوط الحمراء وبذلك صار دعسها عنوانها الاول ولأخير |<br>
-    طائفة الظلام تتجاوز العتمة لتحكم في لأخير | نحن الذي نفعل قبل ان نتكلم |<br>
-    لطالما كان ظلام كلمات لا يفهمها الا من قرأها وشادو من سا يكتب الكلمات
+  <div class="cover">
+    <div class="profile"></div>
+  </div>  <div class="header">
+    <div class="description">الظل يقطن هنا</div>
   </div>  <div class="videos">
-    <div class="video-container">
+    <div class="video-container" onclick="toggleVideo(this)">
       <video src="VivaCut_video_1751836959485_HD1.mp4"></video>
-      <div class="video-title">لحن نهاية</div>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
     </div>
-    <!-- يمكنك تكرار الكتلة أعلاه لمزيد من الفيديوهات -->
-  </div><button class="download-btn" id="downloadBtn">تحميل الفيديو</button>
-
-  <div class="back-button" onclick="history.back()">⟵</div>  <script>
-    const videos = document.querySelectorAll('.video-container');
-    const downloadBtn = document.getElementById('downloadBtn');
-    let activeVideo = null;
-
-    videos.forEach(container => {
-      container.addEventListener('click', () => {
-        if (activeVideo) {
-          activeVideo.classList.remove('enlarged');
-          downloadBtn.style.display = 'none';
+    <div class="video-container" onclick="toggleVideo(this)">
+      <video src="VivaCut_video_2.mp4"></video>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
+    </div>
+    <div class="video-container" onclick="toggleVideo(this)">
+      <video src="VivaCut_video_3.mp4"></video>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
+    </div>
+    <div class="video-container" onclick="toggleVideo(this)">
+      <video src="VivaCut_video_4.mp4"></video>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
+    </div>
+    <div class="video-container" onclick="toggleVideo(this)">
+      <video src="VivaCut_video_5.mp4"></video>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
+    </div>
+    <div class="video-container" onclick="toggleVideo(this)">
+      <video src="VivaCut_video_6.mp4"></video>
+      <button class="download-button" onclick="event.stopPropagation(); downloadVideo(this)">تحميل</button>
+    </div>
+  </div>  <div class="back-button" onclick="goBack()">
+    <i>&larr;</i>
+  </div>  <script>
+    function toggleVideo(container) {
+      document.querySelectorAll('.video-container').forEach(el => {
+        if (el !== container) {
+          el.classList.remove('enlarged');
+          el.querySelector('video').pause();
         }
-
-        activeVideo = container;
-        container.classList.add('enlarged');
-        downloadBtn.style.display = 'block';
       });
-    });
-
-    downloadBtn.addEventListener('click', () => {
-      if (activeVideo) {
-        const video = activeVideo.querySelector('video');
-        const link = document.createElement('a');
-        link.href = video.src;
-        link.download = video.src.split('/').pop();
-        link.click();
+      container.classList.toggle('enlarged');
+      const video = container.querySelector('video');
+      if (container.classList.contains('enlarged')) {
+        video.play();
+      } else {
+        video.pause();
       }
-    });
+    }
+
+    function downloadVideo(btn) {
+      const video = btn.parentElement.querySelector('video');
+      const a = document.createElement('a');
+      a.href = video.src;
+      a.download = 'video.mp4';
+      a.click();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
   </script></body>
-</html>
+  </html>
