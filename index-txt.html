@@ -1,1 +1,206 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مدونات كاملة</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff000;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    /* الغلاف */
+    header {
+      background-image: url('cover.png'); /* 👑 يمكنك استخدام gif أو jpg أيضًا */
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      position: relative;
+    }
+
+    /* الصورة الدائرية */
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 6px solid white;
+      background-image: url('profile.png');
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      bottom: -60px;
+      right: 20px;
+      box-shadow: 0 0 15px pink;
+      animation: pinkPulse 2s infinite;
+    }
+
+    @keyframes pinkPulse {
+      0% { box-shadow: 0 0 0 0 rgba(255,105,180,0.7); }
+      70% { box-shadow: 0 0 0 25px rgba(255,105,180,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,105,180,0); }
+    }
+
+    #blogs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 80px 20px 30px;
+      direction: rtl;
+    }
+
+    .blog-box {
+      background: rgba(90, 0, 130, 0.2);
+      border: 2px dashed #cc33ff;
+      box-shadow: 0 0 15px #cc33ff, 0 0 30px #9900cc;
+      border-radius: 15px;
+      padding: 10px;
+      color: black;
+      height: 150px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .blog-box:hover {
+      transform: scale(1.05);
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    #fullText {
+      font-size: 28px;
+      line-height: 2.2;
+      white-space: pre-wrap;
+      max-width: 90vw;
+    }
+
+    #copyBtn {
+      margin-top: 30px;
+      background-color: purple;
+      color: white;
+      font-size: 20px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .home-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 90px;
+      height: 90px;
+      background-color: pink;
+      color: black;
+      font-size: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 0 15px yellow;
+      animation: pulse 2s infinite;
+      z-index: 1000;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px yellow; }
+      50% { box-shadow: 0 0 25px yellow; }
+      100% { box-shadow: 0 0 5px yellow; }
+    }
+
+    @media (max-width: 768px) {
+      #blogs {
+        grid-template-columns: 1fr;
+      }
+      #fullText {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- الغلاف -->
+<header>
+  <div class="profile-pic"></div>
+</header>
+
+<!-- شبكة المدونات -->
+<div id="blogs"></div>
+
+<!-- مربع عرض النص -->
+<div id="overlay" onclick="hideOverlay(event)">
+  <div id="fullText" onclick="event.stopPropagation()"></div>
+  <button id="copyBtn" onclick="copyText()">📋 نسخ النص</button>
+</div>
+
+<!-- زر وردي كبير للرجوع -->
+<a href="index.html" class="home-btn" title="رجوع إلى الرئيسية">🏠</a>
+
+<script>
+  const blogFiles = ['blog1.txt', 'blog2.txt', 'blog3.txt'];
+  const blogsContainer = document.getElementById('blogs');
+  const overlay = document.getElementById('overlay');
+  const fullText = document.getElementById('fullText');
+  let allBlogs = [];
+
+  async function loadBlogs() {
+    for (const file of blogFiles) {
+      try {
+        const res = await fetch(file);
+        const text = await res.text();
+        const parts = text.split(/(?:\r?\n){2,}|===/g).filter(e => e.trim());
+        allBlogs.push(...parts);
+      } catch (err) {
+        console.error('فشل تحميل', file, err);
+      }
+    }
+
+    allBlogs.slice(0, 9).forEach((text) => {
+      const box = document.createElement('div');
+      box.className = 'blog-box';
+      box.innerText = text.substring(0, 60) + '...';
+      box.onclick = () => showFullText(text);
+      blogsContainer.appendChild(box);
+    });
+  }
+
+  function showFullText(text) {
+    fullText.innerText = text;
+    overlay.style.display = 'flex';
+  }
+
+  function hideOverlay(event) {
+    overlay.style.display = 'none';
+  }
+
+  function copyText() {
+    navigator.clipboard.writeText(fullText.innerText)
+      .then(() => alert("✅ تم نسخ النص!"));
+  }
+
+  loadBlogs();
+</script>
+
+</body>
+</html>
+
